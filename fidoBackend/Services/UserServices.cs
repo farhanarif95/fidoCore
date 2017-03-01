@@ -29,5 +29,33 @@ namespace fidoBackend.Services
                 return new Models.Status() { result = false, message = e.ToString() };
             }
         }
+
+        public async static Task<Status> SignIn(string username, string password)
+        {
+            try
+            {
+                var users = await MobileService.GetTable<Users>().Where(x => x.email == username).ToListAsync();
+                var selected = users.FirstOrDefault();
+                if (selected!=null)
+                {
+                    if(selected.password.Equals(password))
+                    {
+                        return new Models.Status() { result = true, message = "Successfully Logged In",data=selected };
+                    }
+                    else
+                    {
+                        return new Models.Status() { result = false, message = "Invalid Password" };
+                    }
+                }
+                else
+                {
+                    return new Models.Status() { result = false, message = "No account found!" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new Models.Status() { result = false, message = e.ToString() };
+            }
+        }
     }
 }

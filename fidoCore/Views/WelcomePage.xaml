@@ -25,10 +25,10 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Email" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox PlaceholderText="mail@mail.com" Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Text="{Binding Email, Mode=TwoWay}" PlaceholderText="mail@mail.com" Grid.Row="0" Grid.Column="1"/>
                     <TextBlock Text="Password" Margin="0,5,0,0" Grid.Row="1" Grid.Column="0"/>
-                    <PasswordBox Grid.Column="1" Margin="0,5,0,0" Grid.Row="1"/>
-                    <Button Content="Login" Grid.Row="2" HorizontalAlignment="Stretch" Margin="0,10,0,0" Grid.ColumnSpan="2"/>
+                    <PasswordBox Password="{Binding Password, Mode=TwoWay}" Grid.Column="1" Margin="0,5,0,0" Grid.Row="1"/>
+                    <Button Content="Login" Click="{x:Bind ViewModel.SignIn}" Grid.Row="2" HorizontalAlignment="Stretch" Margin="0,10,0,0" Grid.ColumnSpan="2"/>
                 </Grid>
                 <RelativePanel HorizontalAlignment="Center">
                     <VisualStateManager.VisualStateGroups>

@@ -10,5 +10,6 @@ namespace fidoBackend.Models
     {
         public bool result { get; set; }
         public string message { get; set; }
+        public object data { get; set; }
     }
 }

@@ -57,7 +57,7 @@
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
-                <AppBarButton Click="{x:Bind ViewModel.Logout}" Label="Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.Logout}" Label="Logout" />
             </controls:PageHeader.SecondaryCommands>
 
         </controls:PageHeader>

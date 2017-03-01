@@ -51,7 +51,7 @@ namespace fidoCore
         {
             // TODO: add your long-running task here
             var settings = SettingsService.Instance;
-            if (!string.IsNullOrWhiteSpace(settings.OrganisationId) && string.IsNullOrWhiteSpace(settings.UserId))
+            if (string.IsNullOrWhiteSpace(settings.OrganisationId) && string.IsNullOrWhiteSpace(settings.UserId))
             {
                 await NavigationService.NavigateAsync(typeof(Views.WelcomePage));
             }
