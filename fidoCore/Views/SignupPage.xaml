@@ -4,10 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:fidoCore.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:vm="using:fidoCore.ViewModels"
     xmlns:controls="using:Template10.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.DataContext>
+        <vm:SignupViewModel x:Name="ViewModel" />
+    </Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
@@ -58,26 +61,26 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <controls:PageHeader Text="Signup" EllipsisVisibility="Collapsed">
-            <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Forward"/>
+            <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Click="{x:Bind ViewModel.SignUp}" Icon="Forward"/>
         </controls:PageHeader>
         <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
-            <AppBarButton Label="Submit" Icon="Forward"/>
+            <AppBarButton Label="Submit" Click="{x:Bind ViewModel.SignUp}" Icon="Forward"/>
         </CommandBar>
         <ScrollViewer Margin="0,60,0,0">
             <RelativePanel>
                 <StackPanel x:Name="CompanyDetails" Orientation="Vertical" Margin="5">
                     <TextBlock Text="Company Details" Margin="5"/>
                     <Grid HorizontalAlignment="Stretch" Height="1" Background="{ThemeResource ApplicationForegroundThemeBrush}"/>
-                    <TextBox Margin="5" Header="Company Name" x:Name="CompanyName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Charecters"/>
-                    <TextBox AcceptsReturn="True" Height="175" TextWrapping="Wrap"  Margin="5" Header="Company Address" x:Name="CompanyAddress" HorizontalAlignment="Stretch"/>
+                    <TextBox Text="{Binding CompanyName, Mode=TwoWay}" Margin="5" Header="Company Name" x:Name="CompanyName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Charecters"/>
+                    <TextBox Text="{Binding CompanyAddress, Mode=TwoWay}" AcceptsReturn="True" Height="175" TextWrapping="Wrap"  Margin="5" Header="Company Address" x:Name="CompanyAddress" HorizontalAlignment="Stretch"/>
                 </StackPanel>
                 <StackPanel x:Name="AdminDetails" Margin="5">
                     <TextBlock Text="Administrator Details" Margin="5"/>
                     <Grid HorizontalAlignment="Stretch" Height="1" Background="{ThemeResource ApplicationForegroundThemeBrush}"/>
-                    <TextBox Margin="5" Header="Name" x:Name="AdminName" HorizontalAlignment="Stretch"/>
-                    <TextBox Margin="5" Header="Email" x:Name="Email" HorizontalAlignment="Stretch" InputScope="EmailNameOrAddress" PlaceholderText="hello@yourcompany.com"/>
-                    <PasswordBox Margin="5" Header="Password" x:Name="Password" HorizontalAlignment="Stretch"/>
-                    <PasswordBox Margin="5" Header="Confirm Password" x:Name="ConfirmPassword" HorizontalAlignment="Stretch"/>
+                    <TextBox Margin="5" Text="{Binding AdminName, Mode=TwoWay}" Header="Name" x:Name="AdminName" HorizontalAlignment="Stretch"/>
+                    <TextBox Margin="5"  Text="{Binding Email, Mode=TwoWay}" Header="Email" x:Name="Email" HorizontalAlignment="Stretch" InputScope="EmailNameOrAddress" PlaceholderText="hello@yourcompany.com"/>
+                    <PasswordBox Margin="5" Password="{Binding Password, Mode=TwoWay}" Header="Password" x:Name="Password" HorizontalAlignment="Stretch"/>
+                    <PasswordBox Margin="5" Header="Confirm Password" Password="{Binding ConfirmPassword, Mode=TwoWay}" x:Name="ConfirmPassword" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </RelativePanel>
         </ScrollViewer>

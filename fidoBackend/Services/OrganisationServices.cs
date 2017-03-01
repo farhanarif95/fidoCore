@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace fidoBackend
+namespace fidoBackend.Services
 {
-    public class Class1
+    class OrganisationServices
     {
     }
 }
