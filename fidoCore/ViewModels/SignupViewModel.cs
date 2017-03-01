@@ -8,11 +8,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace fidoCore.ViewModels
 {
-    public class WelcomeViewModel : ViewModelBase
+    public class SignupViewModel : ViewModelBase
     {
-        
-     
-        public WelcomeViewModel()
+
+
+        public SignupViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -20,7 +20,7 @@ namespace fidoCore.ViewModels
             }
             else
             {
-                Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = false;
+
             }
 
         }
@@ -29,7 +29,7 @@ namespace fidoCore.ViewModels
         {
             if (suspensionState.Any())
             {
-                
+
             }
             await Task.CompletedTask;
         }
@@ -52,9 +52,6 @@ namespace fidoCore.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
-
-        public void GotoSignupPage() =>
-            NavigationService.Navigate(typeof(Views.SignupPage));
 
     }
 }

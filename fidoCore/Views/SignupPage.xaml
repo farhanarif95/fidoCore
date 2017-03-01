@@ -9,84 +9,77 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:PageHeader Text="Signup">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="AdminDetails.(RelativePanel.Below)" Value="CompanyDetails"/>
+                        <Setter Target="AdminDetails.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="AdminDetails.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignRightWithPanel)" Value="False"/>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="CompanyDetails.Width" Value="250"/>
+                        <Setter Target="AdminDetails.(RelativePanel.RightOf)" Value="CompanyDetails"/>
+                        <Setter Target="AdminDetails.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="AdminDetails.Width" Value="250"/>
+                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignRightWithPanel)" Value="False"/>
+                        <Setter Target="CompanyDetails.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="CompanyDetails.Width" Value="575"/>
+                        <Setter Target="AdminDetails.(RelativePanel.RightOf)" Value="CompanyDetails"/>
+                        <Setter Target="AdminDetails.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="AdminDetails.Width" Value="575"/>
+                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <controls:PageHeader Text="Signup" EllipsisVisibility="Collapsed">
+            <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Forward"/>
         </controls:PageHeader>
-        <ScrollViewer Grid.RowSpan="2">
-            <StackPanel Orientation="Vertical">
-                <Image Width="40" HorizontalAlignment="Right" Margin="0,5,10,0" Height="40" Source="ms-appx:///Assets/IMG_20161116_123608.png" Stretch="Fill" />
-                <Grid HorizontalAlignment="Stretch" Margin="50">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="7*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Company Name"  Margin="0,5,0,0" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox PlaceholderText="minimum 5 characters" Margin="0,5,0,0" Grid.Row="0" Grid.Column="1"/>
-                    <TextBlock Text="Address" Grid.Row="01" Margin="0,5,0,0" Grid.Column="0"/>
-                    <TextBox Grid.Row="1" Margin="0,5,0,0" Grid.Column="1"/>
-                    <TextBlock Text="email id" Grid.Row="2" Margin="0,5,0,0" Grid.Column="0"/>
-                    <TextBox PlaceholderText="email@email.com" Margin="0,5,0,0" Grid.Row="2" Grid.Column="1"/>
-                    <TextBlock Text="Password" Margin="0,5,0,0" Grid.Row="3" Grid.Column="0"/>
-                    <PasswordBox Grid.Column="1" Margin="0,5,0,0" Grid.Row="3"/>
-                    <TextBlock Text="re-enterPassword" Margin="0,5,0,0" Grid.Row="4" Grid.Column="0"/>
-                    <PasswordBox Grid.Column="2" Margin="0,5,0,0" Grid.Row="4"/>
-                    <Button Content="signup" Grid.Row="5" HorizontalAlignment="Stretch" Margin="20" Grid.ColumnSpan="2"/>   
-                </Grid>
-                <RelativePanel HorizontalAlignment="Center">
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
-                            <VisualState x:Name="VisualStateNarrow">
-                                <VisualState.StateTriggers>
-                                    <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Target="signUpLabel.RelativePanel.BottomOf" Value="notRegisteredLabel" />
-
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="VisualStateNormal">
-                                <VisualState.StateTriggers>
-                                    <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Target="signUpLabel.RelativePanel.RightOf" Value="notRegisteredLabel" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="VisualStateWide">
-                                <VisualState.StateTriggers>
-                                    <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Target="signUpLabel.RelativePanel.RightOf" Value="notRegisteredLabel" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
-
-                    <TextBlock Text="welcome to fidoCore Accounting" Margin="5" x:Name="notRegisteredLabel"/>
-                </RelativePanel>
-                    <!--<RelativePanel HorizontalAlignment="Stretch" Margin="100">
-                    <TextBlock   Margin="0,5,10,5" Text="Email" x:Name="userNameLabel"/>
-                    <TextBox PlaceholderText="mail@mail.com" Margin="25,0,0,0" Width="300" RelativePanel.RightOf="userNameLabel"/>
-                    <TextBlock   Margin="0,5,10,5" Text="Password" x:Name="passwordLabel" RelativePanel.Below="userNameLabel"/>
-                    <PasswordBox  Margin="25,0,0,0" Width="300" RelativePanel.RightOf="userNameLabel" RelativePanel.Below="userNameLabel"/>
-
-                </RelativePanel>-->
-            </StackPanel>
+        <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
+            <AppBarButton Label="Submit" Icon="Forward"/>
+        </CommandBar>
+        <ScrollViewer Margin="0,60,0,0">
+            <RelativePanel>
+                <StackPanel x:Name="CompanyDetails" Orientation="Vertical" Margin="5">
+                    <TextBlock Text="Company Details" Margin="5"/>
+                    <Grid HorizontalAlignment="Stretch" Height="1" Background="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                    <TextBox Margin="5" Header="Company Name" x:Name="CompanyName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Charecters"/>
+                    <TextBox AcceptsReturn="True" Height="175" TextWrapping="Wrap"  Margin="5" Header="Company Address" x:Name="CompanyAddress" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel x:Name="AdminDetails" Margin="5">
+                    <TextBlock Text="Administrator Details" Margin="5"/>
+                    <Grid HorizontalAlignment="Stretch" Height="1" Background="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                    <TextBox Margin="5" Header="Name" x:Name="AdminName" HorizontalAlignment="Stretch"/>
+                    <TextBox Margin="5" Header="Email" x:Name="Email" HorizontalAlignment="Stretch" InputScope="EmailNameOrAddress" PlaceholderText="hello@yourcompany.com"/>
+                    <PasswordBox Margin="5" Header="Password" x:Name="Password" HorizontalAlignment="Stretch"/>
+                    <PasswordBox Margin="5" Header="Confirm Password" x:Name="ConfirmPassword" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </RelativePanel>
         </ScrollViewer>
-
-        <!--<TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="393,247,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="272,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/SplashScreen.png"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="281,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="281,152,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="281,225,0,0"/>-->
     </Grid>
 </Page>

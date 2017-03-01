@@ -27,25 +27,18 @@
                 </StackPanel>
                 
             </Controls:HamburgerButtonInfo>
-            <Controls:HamburgerButtonInfo ButtonType="Toggle" ClearHistory="True" PageType="views:MainPage">
-                <RelativePanel>
-                    <SymbolIcon x:Name="LeftIcon"
-                                    Width="48"
-                                    Height="48"
-                                    Foreground="White"
-                                    RelativePanel.AlignLeftWithPanel="True"
-                                    RelativePanel.AlignVerticalCenterWithPanel="True"
-                                    Symbol="List" />
-
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48"
+                                Height="48"
+                                Symbol="Document" />
                     <TextBlock Margin="12,0,0,0"
-                                   VerticalAlignment="Center"
-                                   RelativePanel.AlignVerticalCenterWithPanel="True"
-                                   RelativePanel.LeftOf="RightIcon"
-                                   RelativePanel.RightOf="LeftIcon"
-                                   Text="Accounting" />
-                </RelativePanel>
+                               VerticalAlignment="Center"
+                               Text="Accounting" />
+                </StackPanel>
+
             </Controls:HamburgerButtonInfo>
-           
+
             <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
