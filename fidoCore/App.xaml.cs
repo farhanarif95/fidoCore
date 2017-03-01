@@ -50,8 +50,15 @@ namespace fidoCore
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
             // TODO: add your long-running task here
-            if(SettingsService)
-            await NavigationService.NavigateAsync(typeof(Views.WelcomePage));
+            var settings = SettingsService.Instance;
+            if (!string.IsNullOrWhiteSpace(settings.OrganisationId) && string.IsNullOrWhiteSpace(settings.UserId))
+            {
+                await NavigationService.NavigateAsync(typeof(Views.WelcomePage));
+            }
+            else
+            {
+                await NavigationService.NavigateAsync(typeof(Views.MainPage));
+            }
         }
     }
 }

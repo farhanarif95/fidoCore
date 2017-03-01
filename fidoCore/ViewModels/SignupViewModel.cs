@@ -30,7 +30,7 @@ namespace fidoCore.ViewModels
             }
             else
             {
-
+                Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = false;
             }
 
         }
