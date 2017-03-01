@@ -66,7 +66,7 @@
         <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
             <AppBarButton Label="Submit" Click="{x:Bind ViewModel.SignUp}" Icon="Forward"/>
         </CommandBar>
-        <ScrollViewer Margin="0,60,0,0">
+        <ScrollViewer Margin="0,60,0,60">
             <RelativePanel>
                 <StackPanel x:Name="CompanyDetails" Orientation="Vertical" Margin="5">
                     <TextBlock Text="Company Details" Margin="5"/>
