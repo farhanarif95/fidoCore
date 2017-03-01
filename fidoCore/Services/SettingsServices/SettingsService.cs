@@ -14,6 +14,47 @@ namespace fidoCore.Services.SettingsServices
             _helper = new Template10.Services.SettingsService.SettingsHelper();
         }
 
+        public string UserId
+        {
+            get { return _helper.Read<string>(nameof(UserId),String.Empty); }
+            set
+            {
+                _helper.Write(nameof(UserId), value);
+            }
+        }
+        public string Name
+        {
+            get { return _helper.Read<string>(nameof(Name), String.Empty); }
+            set
+            {
+                _helper.Write(nameof(Name), value);
+            }
+        }
+        public string Email
+        {
+            get { return _helper.Read<string>(nameof(Email), String.Empty); }
+            set
+            {
+                _helper.Write(nameof(Email), value);
+            }
+        }
+        public string OrganisationName
+        {
+            get { return _helper.Read<string>(nameof(OrganisationName), String.Empty); }
+            set
+            {
+                _helper.Write(nameof(OrganisationName), value);
+            }
+        }
+        public string OrganisationId
+        {
+            get { return _helper.Read<string>(nameof(OrganisationId), String.Empty); }
+            set
+            {
+                _helper.Write(nameof(OrganisationId), value);
+            }
+        }
+
         public bool UseShellBackButton
         {
             get { return _helper.Read<bool>(nameof(UseShellBackButton), true); }

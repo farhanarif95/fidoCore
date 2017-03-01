@@ -110,15 +110,41 @@ namespace fidoCore.ViewModels
                     companyName = CompanyName,
                     address = CompanyAddress
                 };
-
-                var user = new Users()
+                Views.Busy.SetBusy(true, "Please hold while we register the organisation");
+                var status = await fidoBackend.Services.OrganisationServices.Signup(organisation);
+                Views.Busy.SetBusy(false);
+                if (status.result)
                 {
-                    email = Email,
-                    name = AdminName,
-                    password= Encryption.EncryptPassword(Password),
-                    roles="ALL",
-                    organisation
+                    var user = new Users()
+                    {
+                        email = Email,
+                        name = AdminName,
+                        password = Encryption.EncryptPassword(Password),
+                        roles = "ALL",
+                        organisation = organisation.id
+                    };
+                    Views.Busy.SetBusy(true, "Please hold while we register the user");
+                    var userstatus = await fidoBackend.Services.UserServices.Signup(user);
+                    Views.Busy.SetBusy(false);
+                    if (userstatus.result)
+                    {
+                        Services.SettingsServices.Setti
+                    }
+                    else
+                    {
+                        dialog.Title = "Can't Register User";
+                        dialog.Content = userstatus.message;
+                        await dialog.ShowAsync();
+                    }
+
                 }
+                else
+                {
+                    dialog.Title = "Can't Register Organisation";
+                    dialog.Content = userstatus.message;
+                    await dialog.ShowAsync();
+                }
+              
             }
         }
 
