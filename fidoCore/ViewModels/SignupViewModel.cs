@@ -128,7 +128,13 @@ namespace fidoCore.ViewModels
                     Views.Busy.SetBusy(false);
                     if (userstatus.result)
                     {
-                        Services.SettingsServices.Setti
+                        var settings = Services.SettingsServices.SettingsService.Instance;
+                        settings.Email = user.email;
+                        settings.Name = user.name;
+                        settings.OrganisationId = organisation.id;
+                        settings.OrganisationName = organisation.companyName;
+                        settings.UserId = user.id;
+                        NavigationService.Navigate(typeof(Views.MainPage));
                     }
                     else
                     {
@@ -141,7 +147,7 @@ namespace fidoCore.ViewModels
                 else
                 {
                     dialog.Title = "Can't Register Organisation";
-                    dialog.Content = userstatus.message;
+                    dialog.Content = status.message;
                     await dialog.ShowAsync();
                 }
               
