@@ -43,7 +43,7 @@ namespace fidoCore.ViewModels
         }
 
         public void GotoSignupPage() =>
-            NavigationService.Navigate(typeof(Views.SignupPage));
+            NavigationService.Navigate(typeof(Views.WelcomePage));
 
     }
 }

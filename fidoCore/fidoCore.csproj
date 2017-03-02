@@ -202,6 +202,12 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fidoAccounting\fidoAccounting.csproj">
+      <Project>{883b6d29-0317-449b-804a-5bcc6577e480}</Project>
+      <Name>fidoAccounting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
