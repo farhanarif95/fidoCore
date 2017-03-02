@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
+using fidoCore.Services.SettingsServices;
 
 namespace fidoCore.ViewModels
 {
@@ -16,6 +17,7 @@ namespace fidoCore.ViewModels
             {
                 Value = "Designtime value";
             }
+            Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = true;
         }
 
         string _Value = "Gas";
@@ -47,6 +49,15 @@ namespace fidoCore.ViewModels
 
         public void GotoDetailsPage() =>
             NavigationService.Navigate(typeof(Views.DetailPage), Value);
+        public void Logout()
+        {
+            var settings = SettingsService.Instance;
+            settings.UserId = string.Empty;
+            settings.OrganisationId = string.Empty;
+            NavigationService.Navigate(typeof(Views.WelcomePage), 0);
+            NavigationService.ClearHistory();
+        }
+
 
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);

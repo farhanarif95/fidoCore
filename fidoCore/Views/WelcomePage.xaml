@@ -11,13 +11,9 @@
         <vm:WelcomeViewModel x:Name="ViewModel" />
     </Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="154*"/>
-            <RowDefinition Height="207*"/>
-        </Grid.RowDefinitions>
-        <ScrollViewer Grid.RowSpan="2">
+        <ScrollViewer>
             <StackPanel Orientation="Vertical">
-                <Image Width="100" Margin="0,50,0,0" Height="100" Source="ms-appx:///Assets/IMG_20170204_131733_756.jpg" Stretch="Fill"/>
+                <TextBlock Text="Welcome to Fido ERP" HorizontalAlignment="Center" Margin="0,100,0,0" FontSize="22"/>
                 <Grid HorizontalAlignment="Stretch" Margin="50">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
@@ -29,10 +25,10 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Email" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox PlaceholderText="mail@mail.com" Grid.Row="0" Grid.Column="1"/>
+                    <TextBox Text="{Binding Email, Mode=TwoWay}" PlaceholderText="mail@mail.com" Grid.Row="0" Grid.Column="1"/>
                     <TextBlock Text="Password" Margin="0,5,0,0" Grid.Row="1" Grid.Column="0"/>
-                    <PasswordBox Grid.Column="1" Margin="0,5,0,0" Grid.Row="1"/>
-                    <Button Content="Login" Grid.Row="2" HorizontalAlignment="Stretch" Margin="20" Grid.ColumnSpan="2"/>   
+                    <PasswordBox Password="{Binding Password, Mode=TwoWay}" Grid.Column="1" Margin="0,5,0,0" Grid.Row="1"/>
+                    <Button Content="Login" Click="{x:Bind ViewModel.SignIn}" Grid.Row="2" HorizontalAlignment="Stretch" Margin="0,10,0,0" Grid.ColumnSpan="2"/>
                 </Grid>
                 <RelativePanel HorizontalAlignment="Center">
                     <VisualStateManager.VisualStateGroups>
@@ -43,7 +39,6 @@
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Target="signUpLabel.RelativePanel.BottomOf" Value="notRegisteredLabel" />
-
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="VisualStateNormal">
@@ -68,21 +63,7 @@
                     <TextBlock Text="Your Organisation not registered yet?" Margin="5" x:Name="notRegisteredLabel"/>
                     <TextBlock Text="Signup Now!" Margin="5" Tapped="{x:Bind ViewModel.GotoSignupPage}" x:Name="signUpLabel" RelativePanel.RightOf="notRegisteredLabel"/>
                 </RelativePanel>
-                    <!--<RelativePanel HorizontalAlignment="Stretch" Margin="100">
-                    <TextBlock   Margin="0,5,10,5" Text="Email" x:Name="userNameLabel"/>
-                    <TextBox PlaceholderText="mail@mail.com" Margin="25,0,0,0" Width="300" RelativePanel.RightOf="userNameLabel"/>
-                    <TextBlock   Margin="0,5,10,5" Text="Password" x:Name="passwordLabel" RelativePanel.Below="userNameLabel"/>
-                    <PasswordBox  Margin="25,0,0,0" Width="300" RelativePanel.RightOf="userNameLabel" RelativePanel.Below="userNameLabel"/>
-
-                </RelativePanel>-->
             </StackPanel>
         </ScrollViewer>
-
-        <!--<TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="393,247,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="272,10,0,0" VerticalAlignment="Top" Width="100" Source="ms-appx:///Assets/SplashScreen.png"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="281,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="281,152,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="281,225,0,0"/>-->
     </Grid>
 </Page>
