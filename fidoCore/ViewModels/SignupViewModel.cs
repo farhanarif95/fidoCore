@@ -31,6 +31,7 @@ namespace fidoCore.ViewModels
             else
             {
                 Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = false;
+                Services.SettingsServices.SettingsService.Instance.IsFullScreen = true;
             }
 
         }
@@ -53,6 +54,7 @@ namespace fidoCore.ViewModels
             else
             {
                 Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = true;
+                Services.SettingsServices.SettingsService.Instance.IsFullScreen = false;
             }
             await Task.CompletedTask;
         }

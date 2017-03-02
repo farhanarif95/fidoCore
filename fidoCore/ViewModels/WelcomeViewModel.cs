@@ -7,6 +7,7 @@ using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Controls;
 using fidoBackend.Models;
+using fidoCore.Helpers;
 
 namespace fidoCore.ViewModels
 {
@@ -25,6 +26,7 @@ namespace fidoCore.ViewModels
             else
             {
                 Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = false;
+                Services.SettingsServices.SettingsService.Instance.IsFullScreen = true;
             }
 
         }
@@ -47,6 +49,7 @@ namespace fidoCore.ViewModels
             else
             {
                 Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = true;
+                Services.SettingsServices.SettingsService.Instance.IsFullScreen = false;
             }
             await Task.CompletedTask;
         }
@@ -80,7 +83,7 @@ namespace fidoCore.ViewModels
             else
             {
                 Views.Busy.SetBusy(true,"Logging in...");
-                var status = await fidoBackend.Services.UserServices.SignIn(Email, Password);
+                var status = await fidoBackend.Services.UserServices.SignIn(Email, Encryption.EncryptPassword(Password));
                 Views.Busy.SetBusy(false);
                 if (status.result)
                 {

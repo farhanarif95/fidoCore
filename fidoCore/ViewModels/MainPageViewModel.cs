@@ -17,6 +17,7 @@ namespace fidoCore.ViewModels
             {
                 Value = "Designtime value";
             }
+            Services.SettingsServices.SettingsService.Instance.ShowHamburgerButton = true;
         }
 
         string _Value = "Gas";

@@ -24,7 +24,7 @@ namespace fidoBackend.Services
                     return new Models.Status() { result = false, message = "Already Registererd" };
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new Models.Status() { result = false, message = e.ToString() };
             }
@@ -36,11 +36,11 @@ namespace fidoBackend.Services
             {
                 var users = await MobileService.GetTable<Users>().Where(x => x.email == username).ToListAsync();
                 var selected = users.FirstOrDefault();
-                if (selected!=null)
+                if (selected != null)
                 {
-                    if(selected.password.Equals(password))
+                    if (selected.password.Equals(password))
                     {
-                        return new Models.Status() { result = true, message = "Successfully Logged In",data=selected };
+                        return new Models.Status() { result = true, message = "Successfully Logged In", data = selected };
                     }
                     else
                     {
@@ -57,5 +57,19 @@ namespace fidoBackend.Services
                 return new Models.Status() { result = false, message = e.ToString() };
             }
         }
+
+        public async static Task<Status> ListUsers(string organisationId)
+        {
+            try
+            {
+                var users = await MobileService.GetTable<Users>().Where(x => x.organisation == organisationId).ToListAsync();
+                return new Models.Status() { result = true, message = "Successfully Retrieved Users", data=users };
+            }
+            catch (Exception e)
+            {
+                return new Models.Status() { result = false, message = e.ToString() };
+            }
+        }
+
     }
 }
