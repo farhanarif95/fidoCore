@@ -8,41 +8,154 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel>
-            <Grid x:Name="Tasks" Width="400" HorizontalAlignment="Stretch" >
-                <RelativePanel>
-                    <TextBlock x:Name="Todo" Text="Todo's" FontSize="30" />
-                    <SymbolIcon x:Name="AddIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
-                    <ListView Width="400" HorizontalAlignment="Stretch" RelativePanel.Below="Todo">
-                        <DataTemplate>
-                            <Grid>
-                                <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <TextBlock x:Name="Task1" Text="Task1" FontSize="25" />
-                                <TextBlock x:Name="AssignedTo" Text="Member1" FontSize="20" />
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView>
-                </RelativePanel>
-                
-            </Grid>
-            <Grid x:Name="MyTasks" Width="400" RelativePanel.RightOf="Tasks" Background="Green" Height="500">
-                <RelativePanel>
-                    <TextBlock x:Name="AssignedtoMe" Text="Todo's" FontSize="30" />
-                    <ListView Width="400" HorizontalAlignment="Stretch" RelativePanel.Below="AssignedtoMe">
-                        <DataTemplate>
-                            <Grid>
-                                <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                    <TextBlock x:Name="Task1" Text="Task1" FontSize="25" />
-                                    <TextBlock x:Name="AssignedTo" Text="Member1" FontSize="20" />
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView>
-                </RelativePanel>
-            </Grid>
-            <Grid x:Name="Team" Width="400" Background="Blue" RelativePanel.RightOf="MyTasks" Height="500">
-            </Grid>
-        </RelativePanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="343*"/>
+        </Grid.RowDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Tasks.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="Tasks.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="Tasks.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="MyTasks.(RelativePanel.Below)" Value="Tasks"/>
+                        <Setter Target="MyTasks.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="MyTasks.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="Team.(RelativePanel.Below)" Value="MyTasks"/>
+                        <Setter Target="Team.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="Team.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="Documents.(RelativePanel.Below)" Value="Team"/>
+                        <Setter Target="Documents.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="Documents.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="myScroll.VerticalScrollMode" Value="Enabled"/>
+                        <Setter Target="myScroll.HorizontalScrollMode" Value="Disabled"/>
+                        <Setter Target="myScroll.VerticalScrollBarVisibility" Value="Auto"/>
+                        <Setter Target="myScroll.HorizontalScrollBarVisibility" Value="Disabled"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="521" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Tasks.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="Tasks.(RelativePanel.AlignRightWithPanel)" Value="False"/>
+                        <Setter Target="Tasks.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="Tasks.Width" Value="250"/>
+                        <Setter Target="MyTasks.(RelativePanel.RightOf)" Value="Tasks"/>
+                        <Setter Target="MyTasks.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="MyTasks.Width" Value="250"/>
+                        <Setter Target="Team.(RelativePanel.RightOf)" Value="MyTasks"/>
+                        <Setter Target="Team.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="Team.Width" Value="250"/>
+                        <Setter Target="Documents.(RelativePanel.RightOf)" Value="Team"/>
+                        <Setter Target="Documents.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="Documents.Width" Value="250"/>
+                        <Setter Target="myScroll.VerticalScrollMode" Value="Disabled"/>
+                        <Setter Target="myScroll.HorizontalScrollMode" Value="Enabled"/>
+                        <Setter Target="myScroll.VerticalScrollBarVisibility" Value="Disabled"/>
+                        <Setter Target="myScroll.HorizontalScrollBarVisibility" Value="AUto"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Tasks.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="Tasks.(RelativePanel.AlignRightWithPanel)" Value="False"/>
+                        <Setter Target="Tasks.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="Tasks.Width" Value="575"/>
+                        <Setter Target="MyTasks.(RelativePanel.RightOf)" Value="Tasks"/>
+                        <Setter Target="MyTasks.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="MyTasks.Width" Value="575"/>
+                        <Setter Target="Team.(RelativePanel.RightOf)" Value="MyTasks"/>
+                        <Setter Target="Team.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="Team.Width" Value="575"/>
+                        <Setter Target="Documents.(RelativePanel.RightOf)" Value="Team"/>
+                        <Setter Target="Documents.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
+                        <Setter Target="Documents.Width" Value="575"/>
+                        <Setter Target="myScroll.VerticalScrollMode" Value="Disabled"/>
+                        <Setter Target="myScroll.HorizontalScrollMode" Value="Enabled"/>
+                        <Setter Target="myScroll.VerticalScrollBarVisibility" Value="Disabled"/>
+                        <Setter Target="myScroll.HorizontalScrollBarVisibility" Value="Auto"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer x:Name="myScroll" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+            <RelativePanel >
+                <Grid x:Name="Tasks" >
+                    <RelativePanel Margin="10,0">
+                        <TextBlock x:Name="Todo" Text="Todo's" FontSize="30" />
+                        <SymbolIcon x:Name="AddTaskIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
+                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Todo">
+                            <DataTemplate>
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <TextBlock x:Name="Task1" Text="Task1" FontSize="25" />
+                                        <TextBlock x:Name="AssignedTo" Text="Member1" FontSize="20" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView>
+                    </RelativePanel>
+
+                </Grid>
+                <Grid x:Name="MyTasks" >
+                    <RelativePanel Margin="10,0">
+                        <TextBlock x:Name="AssignedtoMe" Text="My Tasks" FontSize="30" />
+                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="AssignedtoMe">
+                            <DataTemplate>
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <TextBlock x:Name="Task1" Text="Task1" FontSize="25" />
+                                        <TextBlock x:Name="AssignedTo" Text="Member1" FontSize="20" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView>
+                    </RelativePanel>
+                </Grid>
+                <Grid x:Name="Team" >
+                    <RelativePanel Margin="10,0">
+                        <TextBlock x:Name="Members" Text="Members" FontSize="30" />
+                        <SymbolIcon x:Name="AddMemberIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
+                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Members">
+                            <DataTemplate>
+                                <Grid>
+                                    <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <TextBlock x:Name="MemeberName" Text="Member" FontSize="25" />
+                                        <TextBlock x:Name="Position" Text="Team Leader" FontSize="20" RelativePanel.LeftOf="MemeberName" />
+                                    </RelativePanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView>
+                    </RelativePanel>
+                </Grid>
+                <Grid x:Name="Documents" >
+                    <RelativePanel Margin="10,0">
+                        <TextBlock x:Name="Doc" Text="Documents" FontSize="30" />
+                        <SymbolIcon x:Name="AddDocumentIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
+                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Doc">
+                            <DataTemplate>
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <TextBlock x:Name="File" Text="File Name" FontSize="25" />
+                                        <TextBlock x:Name="UploadedBy" Text="Member" FontSize="20" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView>
+                    </RelativePanel>
+                </Grid>
+            </RelativePanel>
+        </ScrollViewer>
     </Grid>
 </Page>
