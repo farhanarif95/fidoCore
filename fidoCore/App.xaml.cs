@@ -53,7 +53,7 @@ namespace fidoCore
             var settings = SettingsService.Instance;
             if (string.IsNullOrWhiteSpace(settings.OrganisationId) && string.IsNullOrWhiteSpace(settings.UserId))
             {
-                await NavigationService.NavigateAsync(typeof(Views.WelcomePage));
+                await NavigationService.NavigateAsync(typeof(fidoProjectManagement.Views.ProjectDetailed));
             }
             else
             {
