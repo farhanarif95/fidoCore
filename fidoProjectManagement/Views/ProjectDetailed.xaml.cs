@@ -26,5 +26,10 @@ namespace fidoProjectManagement.Views
         {
             this.InitializeComponent();
         }
+
+        private void myScroll_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+
+        }
     }
 }

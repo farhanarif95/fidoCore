@@ -32,6 +32,7 @@
                         <Setter Target="Documents.(RelativePanel.Below)" Value="Team"/>
                         <Setter Target="Documents.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter Target="Documents.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="myScroll.VerticalAlignment" Value="Stretch"/>
                         <Setter Target="myScroll.VerticalScrollMode" Value="Enabled"/>
                         <Setter Target="myScroll.HorizontalScrollMode" Value="Disabled"/>
                         <Setter Target="myScroll.VerticalScrollBarVisibility" Value="Auto"/>
@@ -89,8 +90,8 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <ScrollViewer x:Name="myScroll" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
-            <RelativePanel >
+        <ScrollViewer x:Name="myScroll" ViewChanged="myScroll_ViewChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,10" Grid.RowSpan="2">
+            <RelativePanel x:Name="MainView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
                 <Grid x:Name="Tasks" >
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="Todo" Text="Todo's" FontSize="30" />
