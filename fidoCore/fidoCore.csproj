@@ -122,6 +122,9 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProjectManagement\ProjectHome.xaml.cs">
+      <DependentUpon>ProjectHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ProjectManagement\ProjectHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,10 +229,6 @@
     <ProjectReference Include="..\fidoBackend\fidoBackend.csproj">
       <Project>{bc781ee2-9a82-4ea6-9868-3065623e294a}</Project>
       <Name>fidoBackend</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\fidoProjectManagement\fidoProjectManagement.csproj">
-      <Project>{cabecf3a-45c1-4242-9b3e-4b70cbf6b5a2}</Project>
-      <Name>fidoProjectManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
