@@ -38,7 +38,7 @@
                         <Setter  Target="DescGrid.(RelativePanel.Below)" Value="To"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="SubmitButton.Visibility" Value="Collapsed"/>
+                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
