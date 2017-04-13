@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Tables;
-using fidoServer.DataObjects;
+using fidoServerBackend.DataObjects;
 
-namespace fidoServer.Models
+namespace fidoServerBackend.Models
 {
 	public class MobileServiceContext : DbContext
 	{

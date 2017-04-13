@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
-using fidoServer.DataObjects;
-using fidoServer.Models;
+using fidoServerBackend.DataObjects;
+using fidoServerBackend.Models;
 using Microsoft.Azure.Mobile.Server;
 
-namespace fidoServer.Controllers
+namespace fidoServerBackend.Controllers
 {
 	public class UsersController : TableController<Users>
 	{
@@ -19,7 +19,7 @@ namespace fidoServer.Controllers
 		}
 
 		// GET tables/Users
-		public IQueryable<Users> GetAllUserss() => Query();
+		public IQueryable<Users> GetAllUsers() => Query();
 
 		// GET tables/Users/48D68C86-6EA6-4C25-AA33-223FC9A27959
 		public SingleResult<Users> GetUsers(string id) => Lookup(id);

@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
-using fidoServer.DataObjects;
-using fidoServer.Models;
+using fidoServerBackend.DataObjects;
+using fidoServerBackend.Models;
 using Microsoft.Azure.Mobile.Server;
 
-namespace fidoServer.Controllers
+namespace fidoServerBackend.Controllers
 {
 	public class TasksController : TableController<Tasks>
 	{

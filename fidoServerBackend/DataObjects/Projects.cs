@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Azure.Mobile.Server;
 
-namespace fidoServer.DataObjects
+namespace fidoServerBackend.DataObjects
 {
 	public class Projects : EntityData
 	{

@@ -6,11 +6,11 @@ using System.Web.Http;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
-using fidoServer.DataObjects;
-using fidoServer.Models;
+using fidoServerBackend.DataObjects;
+using fidoServerBackend.Models;
 using Owin;
 
-namespace fidoServer
+namespace fidoServerBackend
 {
 	public partial class Startup
 	{
