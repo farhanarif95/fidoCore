@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="fidoCore.Views.ProjectManagement.AddTeam"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:fidoCore.Views.ProjectManagement"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <RelativePanel
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch" >
+        <TextBlock x:Name="AddTeam" Text="Add Team" FontSize="25"/>
+        <SearchBox
+            RelativePanel.Below="AddTeam"
+            x:Name = "mySearchBox"
+            FocusOnKeyboardInput = "False"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            Height = "35" HorizontalAlignment="Stretch"/>
+        <ListView   HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="mySearchBox">
+            <DataTemplate>
+                <Grid>
+                    <RelativePanel>
+                    <TextBlock x:Name="TeamMember" Text="Team Member"/>
+                    <SymbolIcon Symbol="Delete" x:Name="DeleteMember" RelativePanel.RightOf="TeamMember" />
+                    </RelativePanel>
+                </Grid>
+            </DataTemplate>
+        </ListView>
+       </RelativePanel>
+</Page>
