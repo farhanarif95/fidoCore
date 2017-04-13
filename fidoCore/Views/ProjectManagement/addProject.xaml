@@ -29,13 +29,7 @@
                         <Setter  Target="ClientGrid.(RelativePanel.Below)" Value="AddProject"/>
                         <Setter  Target="ClientGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.Below)" Value="ClientGrid"/>
-                        <Setter  Target="To.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="To.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="To.(RelativePanel.Below)" Value="From"/>
-                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="To"/>
+                       <Setter  Target="DescGrid.(RelativePanel.Below)" Value="ClientGrid"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
                         <Setter Target="Menu.Visibility" Value="Collapsed"/>
@@ -47,16 +41,11 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter  Target="AddProject.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="ClientGrid.(RelativePanel.RightOf)" Value="AddProject"/>
-                        <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.Below)" Value="AddProject"/>
-                        <Setter  Target="From.HorizontalAlignment" Value="Stretch"/>
-                        <Setter  Target="To.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="To.(RelativePanel.Below)" Value="ClientGrid"/>
-                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="From"/>
+                        <Setter  Target="AddProject.HorizontalAlignment" Value="Stretch"/>
+                        <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>                                 
+                        <Setter  Target="ClientGrid.HorizontalAlignment" Value="Stretch"/>
+                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="AddProject"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
                         <Setter Target="Menu.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -111,12 +100,20 @@
                     <TextBox Text="{Binding ProjectName, Mode=TwoWay}" Margin="5" Header="Project Name" x:Name="ProjectName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"/>
                 </Grid>
                 <Grid x:Name="ClientGrid">
-                <TextBox Text="{Binding CompanyName, Mode=TwoWay}" Margin="5" Header="Client Name" x:Name="ClientName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"  />
+                    <StackPanel>
+                        <TextBox Text="{Binding CompanyName, Mode=TwoWay}" Margin="5" Header="Client Name" x:Name="ClientName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"  />
+                        <TextBox Text="{Binding CompanyName, Mode=TwoWay}" Margin="5" Header="Email" x:Name="Email" HorizontalAlignment="Stretch" PlaceholderText="hello@yourcompany.com" InputScope="EmailNameOrAddress"  />
+                        <TextBox Text="{Binding CompanyName, Mode=TwoWay}" Margin="5" Header="Phone" x:Name="Phone" HorizontalAlignment="Stretch" PlaceholderText="Contact number" InputScope="TelephoneNumber"  />
+                        <TextBox Text="{Binding CompanyName, Mode=TwoWay}" Margin="5" Header="Address" x:Name="Address" HorizontalAlignment="Stretch" PlaceholderText="Address"  />
+                    </StackPanel>
                 </Grid>
-                <DatePicker  Header="From" x:Name="From" />
-                <DatePicker  Header="To" x:Name="To"/>
+               
                 <Grid x:Name="DescGrid">
-                    <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="5" Header="Description" x:Name="Desc" PlaceholderText="About Project"/>
+                    <StackPanel>
+                         <DatePicker  Header="From" x:Name="From" />
+                        <DatePicker  Header="To" x:Name="To"/>
+                        <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="Desc" PlaceholderText="About Project"/>
+                    </StackPanel>
                 </Grid>
                 
             </RelativePanel>
