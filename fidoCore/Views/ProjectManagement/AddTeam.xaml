@@ -54,7 +54,7 @@
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
                              Text="Add Team" 
-                             EllipsisVisibility="Collapsed" Opened="pageHeader_Opened" >
+                             EllipsisVisibility="Collapsed" >
             <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Forward"/>
 
         </controls:PageHeader>

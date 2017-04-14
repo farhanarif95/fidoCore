@@ -77,12 +77,12 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Text="Detail Page" 
-                             EllipsisVisibility="Collapsed" Opened="pageHeader_Opened" >
+                             Text="New Project" 
+                             EllipsisVisibility="Collapsed">
             <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Forward"/>
 
         </controls:PageHeader>
-        <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"   RelativePanel.AlignBottomWithPanel="True">
+        <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
             <AppBarButton Label="Submit" Icon="Forward"/>
         </CommandBar>
         <!--  content  -->
@@ -93,7 +93,7 @@
                       RelativePanel.AlignLeftWithPanel="True"
                       RelativePanel.AlignRightWithPanel="True"
                       RelativePanel.Below="pageHeader"
-                      VerticalScrollBarVisibility="Auto" ViewChanged="myScroll_ViewChanged" Margin="0,-3,0,3">
+                      VerticalScrollBarVisibility="Auto"  Margin="0,-3,0,3">
             <RelativePanel x:Name="MainView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
                 

@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Views\ProjectManagement\AddTeam.xaml.cs">
       <DependentUpon>AddTeam.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectManagement\AddProjects.xaml.cs">
       <DependentUpon>AddProjects.xaml</DependentUpon>
     </Compile>
@@ -214,6 +215,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ProjectManagement\AddTeam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ProjectManagement\AddProjects.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

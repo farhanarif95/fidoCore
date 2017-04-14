@@ -41,7 +41,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <controls:PageHeader Text="Projectss" EllipsisVisibility="Collapsed">
-            <AppBarButton x:Name="Add Projects" Foreground="White" Label="Submit" Click="{x:Bind ViewModel.AddProjects}" Icon="Add"/>
+            <AppBarButton x:Name="AddProjects" Foreground="White" Label="Submit" Click="{x:Bind ViewModel.AddProjects}" Icon="Add"/>
         </controls:PageHeader>
         <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
             <AppBarButton Label="Add Projects" Click="{x:Bind ViewModel.AddProjects}" Icon="Add"/>
