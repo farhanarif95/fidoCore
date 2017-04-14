@@ -103,6 +103,8 @@
     <Compile Include="ViewModels\addUsersViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\AddProjectsViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\ListProjectsViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\ListUsersViewModel.cs" />
     <Compile Include="ViewModels\SignupViewModel.cs" />
@@ -127,6 +129,11 @@
     </Compile>
     <Compile Include="Views\ProjectManagement\AddTeam.xaml.cs">
       <DependentUpon>AddTeam.xaml</DependentUpon>
+    <Compile Include="Views\ProjectManagement\AddProjects.xaml.cs">
+      <DependentUpon>AddProjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectManagement\ListProjects.xaml.cs">
+      <DependentUpon>ListProjects.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProjectManagement\ProjectHome.xaml.cs">
       <DependentUpon>ProjectHome.xaml</DependentUpon>
@@ -201,11 +208,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+
     <Page Include="Views\ProjectManagement\addProject.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ProjectManagement\AddTeam.xaml">
+    <Page Include="Views\ProjectManagement\AddProjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectManagement\ListProjects.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

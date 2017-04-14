@@ -40,7 +40,7 @@
 
             </Controls:HamburgerButtonInfo>
 
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="viewspm:ProjectHome">
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="viewspm:ListProjects">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
