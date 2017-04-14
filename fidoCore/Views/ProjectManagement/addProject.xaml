@@ -32,7 +32,7 @@
                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="ClientGrid"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -64,7 +64,7 @@
                         <Setter  Target="DescGrid.(RelativePanel.Below)" Value="From"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -77,11 +77,12 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Text="Detail Page" >
+                             Text="New Project" 
+                             EllipsisVisibility="Collapsed">
             <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Forward"/>
 
         </controls:PageHeader>
-        <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
+        <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
             <AppBarButton Label="Submit" Icon="Forward"/>
         </CommandBar>
         <!--  content  -->
@@ -92,12 +93,15 @@
                       RelativePanel.AlignLeftWithPanel="True"
                       RelativePanel.AlignRightWithPanel="True"
                       RelativePanel.Below="pageHeader"
-                      VerticalScrollBarVisibility="Auto" ViewChanged="myScroll_ViewChanged" Margin="0,-3,0,3">
+                      VerticalScrollBarVisibility="Auto"  Margin="0,-3,0,3">
             <RelativePanel x:Name="MainView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
                 
                 <Grid x:Name="AddProject" >
+                    <StackPanel>
                     <TextBox Text="{Binding ProjectName, Mode=TwoWay}" Margin="5" Header="Project Name" x:Name="ProjectName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"/>
+                        <ComboBox HorizontalAlignment="Stretch" Header="Project Leader" PlaceholderText="Select Lead"/>
+                    </StackPanel>
                 </Grid>
                 <Grid x:Name="ClientGrid">
                     <StackPanel>
@@ -115,7 +119,8 @@
                         <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="Desc" PlaceholderText="About Project"/>
                     </StackPanel>
                 </Grid>
-                
+               
+
             </RelativePanel>
 
         </ScrollViewer>

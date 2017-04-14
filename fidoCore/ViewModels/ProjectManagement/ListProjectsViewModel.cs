@@ -40,7 +40,7 @@ namespace fidoCore.ViewModels
             await Task.CompletedTask;
             var sett = Services.SettingsServices.SettingsService.Instance.OrganisationId;
             Views.Busy.SetBusy(true, "Loading Projects");
-             status = await ProjectServices.ListProjects(sett);
+          //   status = await ProjectServices.ListProjects(sett);
             Views.Busy.SetBusy(false);
             //if (status.result)
             //{
