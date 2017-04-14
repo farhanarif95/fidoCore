@@ -10,10 +10,10 @@ namespace fidoBackend.Services
 {
     public class ProjectServices : BaseService
     {
-        public static async Task ListProjectsAsync(string userId)
+        public static async Task ListProjects(string userId)
         {
-            var usersregisteredprojects = await MobileService.GetTable<Teams>().Where(x => x.userId == userId).ToListAsync();
-            var allprojects = await
+          //  var usersregisteredprojects = await MobileService.GetTable<Teams>().Where(x => x.userId == userId).ToListAsync();
+        //    var allprojects = await
 
 
         }

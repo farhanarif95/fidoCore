@@ -9,7 +9,7 @@
       xmlns:local="using:fidoCore.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:fidoCore.ViewModels"
-      x:Name="AddProjects"
+      x:Name="Adds"
       mc:Ignorable="d">
 
     <Page.DataContext>
