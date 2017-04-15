@@ -154,7 +154,6 @@ namespace fidoBackend.Services
             var res = await BaseService.HttpGetOperation(s);
             if (res != null)
             {
-
                 var dat = JsonConvert.DeserializeObject<List<Users>>(res.data.ToString());
                 return new Models.Status() { result = true, message = "Successfully loaded", data = dat }; ;
             }
