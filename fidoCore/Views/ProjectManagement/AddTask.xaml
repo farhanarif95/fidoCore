@@ -6,10 +6,11 @@
     xmlns:controls="using:Template10.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:fidoCore.ViewModels"
     mc:Ignorable="d">
-  <!--  <Page.DataContext>
-        <vm:DetailPageViewModel x:Name="ViewModel" />
-    </Page.DataContext> -->
+    <Page.DataContext>
+        <vm:AddTaskViewModel x:Name="ViewModel" />
+    </Page.DataContext> 
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
@@ -92,30 +93,30 @@
                              RelativePanel.AlignTopWithPanel="True"
                              Text="Add Task"
                              EllipsisVisibility="Collapsed">
-            <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Save"/>
+            <AppBarButton x:Name="SubmitButton" Foreground="White" Click="{x:Bind ViewModel.Submit}" Label="Submit" Icon="Save"/>
 
         </controls:PageHeader>
         <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
-            <AppBarButton Label="Submit" Icon="Save"/>
+            <AppBarButton Label="Submit" Click="{x:Bind ViewModel.Submit}" Icon="Save"/>
         </CommandBar>
         <!-- content -->
         <Grid x:Name="One" RelativePanel.Below="pageHeader" >
-            <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Task Name" x:Name="TaskName" PlaceholderText="Minimum 5 Characters"/>
+            <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Task Name" x:Name="TaskName" PlaceholderText="Minimum 5 Characters"/>
         </Grid>   
         <Grid x:Name="Two" >
-            <ComboBox HorizontalAlignment="Stretch"  Margin="5,5,4.4,5" Header="Assigned to" PlaceholderText="Select Member"/>
+            <ComboBox HorizontalAlignment="Stretch"  Margin="5,5,4.4,5" Header="Assigned to"  ItemsSource="{Binding Users}" DisplayMemberPath="name" SelectedItem="{Binding selectedleader, Mode=TwoWay}" PlaceholderText="Select Member"/>
         </Grid>
         <Grid x:Name="Three" >
-            <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="TaskDesc" PlaceholderText="What is this task about?"/>
+            <TextBox Text="{Binding task.description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="TaskDesc" PlaceholderText="What is this task about?"/>
         </Grid>
         <Grid x:Name="Four" >
-            <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Status" x:Name="TaskStatus" PlaceholderText="How far the task is done?"/>
+            <TextBox Text="{Binding task.status, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Status" x:Name="TaskStatus" PlaceholderText="How far the task is done?"/>
         </Grid>
         <Grid x:Name="FromDate" >
-            <DatePicker  Margin="5,5,4.4,5" Header="From" x:Name="From"/>
+            <DatePicker  Margin="5,5,4.4,5" Header="From" Date="{Binding task.startDate, Mode=TwoWay}" x:Name="From"/>
         </Grid>
         <Grid x:Name="ToDate">
-        <DatePicker  Margin="5,5,4.4,60" Header="To" x:Name="To"/>
+            <DatePicker  Margin="5,5,4.4,60" Header="To" Date="{Binding task.endDate, Mode=TwoWay}"  x:Name="To"/>
         </Grid>
     </RelativePanel>
 </Page>

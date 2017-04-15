@@ -127,6 +127,23 @@ namespace fidoBackend.Services
             }
         }
 
+        public async static Task<Status> AddTasks(Tasks task)
+        {
+            try
+            {
+                if (task.id == null)
+                    await MobileService.GetTable<Tasks>().InsertAsync(task);
+                else
+                    await MobileService.GetTable<Tasks>().UpdateAsync(task);
+               
+                return new Models.Status() { result = true, message = "Successfully Added" };
+            }
+            catch (Exception e)
+            {
+                return new Models.Status() { result = false, message = e.ToString() };
+            }
+        }
+
         public async static Task<Status> GetTeamInProject(string projectId)
         {
             try

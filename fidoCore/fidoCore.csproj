@@ -103,6 +103,7 @@
     <Compile Include="ViewModels\addUsersViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\AddTaskViewModel.cs" />
     <Compile Include="ViewModels\ProjectManagement\AddProjectsViewModel.cs" />
     <Compile Include="ViewModels\ProjectManagement\AddUsersViewModel.cs" />
     <Compile Include="ViewModels\ProjectManagement\ListProjectsViewModel.cs" />
