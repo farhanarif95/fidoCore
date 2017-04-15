@@ -116,7 +116,7 @@
                 <Grid x:Name="Tasks" >
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="Todo" Text="Todo's" FontSize="30" />
-                        <SymbolIcon x:Name="AddTaskIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
+                        <SymbolIcon x:Name="AddTaskIcon" Width="48" Height="48" Symbol="Add" Tapped="{x:Bind ViewModel.AddTasks}" RelativePanel.AlignRightWithPanel="True"/>
                         <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Todo" ItemsSource="{Binding tasks, Mode=TwoWay}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -135,7 +135,7 @@
                 <Grid x:Name="MyTasks" >
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="AssignedtoMe" Text="My Tasks" FontSize="30" />
-                        <ListView   HorizontalAlignment="Stretch" ItemsSource="{Binding myTasks, Mode=TwoWay}" RelativePanel.Below="AssignedtoMe">
+                        <ListView   HorizontalAlignment="Stretch" ItemsSource="{Binding myTasks, Mode=TwoWay}" ItemClick="{x:Bind ViewModel.ClickItemList}"  RelativePanel.Below="AssignedtoMe">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>

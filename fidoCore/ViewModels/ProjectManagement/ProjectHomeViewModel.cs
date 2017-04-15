@@ -21,8 +21,14 @@ namespace fidoCore.ViewModels
         
         public Tasks selectedTask { get; set; }
 
-        public void AddTasks()
+        public void ClickItemList(object sender, ItemClickEventArgs e)
         {
+            if (e.ClickedItem != null)
+            {
+                var obj = new Temp1();
+                obj.task = ((Tasks)e.ClickedItem);
+                NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask),obj);
+            }
         }
 
         public void EditTasks()
@@ -115,7 +121,12 @@ namespace fidoCore.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
-
+        public void AddTasks()
+        {
+            var tep = new Temp1();
+            tep.projectId = projectId;
+            NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask), tep);
+        }
         public void AddMembers()
         {
             var tep = new Temp();
@@ -126,7 +137,9 @@ namespace fidoCore.ViewModels
 
         public void AddProjects()
         {
-            NavigationService.Navigate(typeof(Views.ProjectManagement.AddProjects));
+            var temp = new Temp1();
+            temp.projectId = projectId;
+            NavigationService.Navigate(typeof(Views.ProjectManagement.AddProjects),temp);
         }
 
 
