@@ -83,7 +83,7 @@ namespace fidoCore.ViewModels
             Views.Busy.SetBusy(false);
             if (teams.result)
             {
-                dialog.Content = teams.result;
+                dialog.Content = teams.message;
                 await dialog.ShowAsync();
                 NavigationService.Navigate(typeof(Views.ProjectManagement.ProjectHome), projectId.projectId);
             }

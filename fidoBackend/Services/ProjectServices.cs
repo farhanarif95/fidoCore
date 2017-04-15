@@ -96,7 +96,6 @@ namespace fidoBackend.Services
                                 team.userId = users[i].id;
                                 await BaseService.MobileService.GetTable<Teams>().InsertAsync(team);
                             }
-
                         }
                         else
                         {
@@ -108,6 +107,7 @@ namespace fidoBackend.Services
                             }
                         }
                     }
+                    return new Models.Status() { result = true, message = "Success" };
                 }
                 else
                 {
@@ -118,6 +118,7 @@ namespace fidoBackend.Services
                         team.userId = users[i].id;
                         await BaseService.MobileService.GetTable<Teams>().InsertAsync(team);
                     }
+                    return new Models.Status() { result =true, message = "Success" };
                 }
             }
             catch (Exception e)
