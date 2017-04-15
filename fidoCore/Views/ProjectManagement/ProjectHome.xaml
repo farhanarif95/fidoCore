@@ -13,7 +13,7 @@
       mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:DetailPageViewModel x:Name="ViewModel" />
+        <vm:ProjectHomeViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -33,9 +33,9 @@
                         <Setter Target="Team.(RelativePanel.Below)" Value="MyTasks"/>
                         <Setter Target="Team.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter Target="Team.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter Target="Documents.(RelativePanel.Below)" Value="Team"/>
+                        <!--<Setter Target="Documents.(RelativePanel.Below)" Value="Team"/>
                         <Setter Target="Documents.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter Target="Documents.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter Target="Documents.(RelativePanel.AlignRightWithPanel)" Value="True">/-->
                         <Setter Target="myScroll.VerticalAlignment" Value="Stretch"/>
                         <Setter Target="myScroll.VerticalScrollMode" Value="Enabled"/>
                         <Setter Target="myScroll.HorizontalScrollMode" Value="Disabled"/>
@@ -58,9 +58,9 @@
                         <Setter Target="Team.(RelativePanel.RightOf)" Value="MyTasks"/>
                         <Setter Target="Team.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
                         <Setter Target="Team.Width" Value="250"/>
-                        <Setter Target="Documents.(RelativePanel.RightOf)" Value="Team"/>
+                        <!--<Setter Target="Documents.(RelativePanel.RightOf)" Value="Team"/>
                         <Setter Target="Documents.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
-                        <Setter Target="Documents.Width" Value="250"/>
+                        <Setter Target="Documents.Width" Value="250"/>-->
                         <Setter Target="myScroll.VerticalScrollMode" Value="Disabled"/>
                         <Setter Target="myScroll.HorizontalScrollMode" Value="Enabled"/>
                         <Setter Target="myScroll.VerticalScrollBarVisibility" Value="Disabled"/>
@@ -75,16 +75,16 @@
                         <Setter Target="Tasks.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter Target="Tasks.(RelativePanel.AlignRightWithPanel)" Value="False"/>
                         <Setter Target="Tasks.(RelativePanel.AlignTopWithPanel)" Value="True"/>
-                        <Setter Target="Tasks.Width" Value="575"/>
+                        <Setter Target="Tasks.Width" Value="300"/>
                         <Setter Target="MyTasks.(RelativePanel.RightOf)" Value="Tasks"/>
                         <Setter Target="MyTasks.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
-                        <Setter Target="MyTasks.Width" Value="575"/>
+                        <Setter Target="MyTasks.Width" Value="300"/>
                         <Setter Target="Team.(RelativePanel.RightOf)" Value="MyTasks"/>
                         <Setter Target="Team.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
-                        <Setter Target="Team.Width" Value="575"/>
+                        <Setter Target="Team.Width" Value="300"/>
                         <Setter Target="Documents.(RelativePanel.RightOf)" Value="Team"/>
                         <Setter Target="Documents.(RelativePanel.AlignLeftWithPanel)" Value="False"/>
-                        <Setter Target="Documents.Width" Value="575"/>
+                        <Setter Target="Documents.Width" Value="300"/>
                         <Setter Target="myScroll.VerticalScrollMode" Value="Disabled"/>
                         <Setter Target="myScroll.HorizontalScrollMode" Value="Enabled"/>
                         <Setter Target="myScroll.VerticalScrollBarVisibility" Value="Disabled"/>
@@ -117,15 +117,17 @@
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="Todo" Text="Todo's" FontSize="30" />
                         <SymbolIcon x:Name="AddTaskIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
-                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Todo">
-                            <DataTemplate>
-                                <Grid>
-                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                        <TextBlock x:Name="Task1" Text="Task1" FontSize="25" />
-                                        <TextBlock x:Name="AssignedTo" Text="Member1" FontSize="20" />
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
+                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Todo" ItemsSource="{Binding tasks, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{Binding title}" FontSize="25" />
+                                            <TextBlock  FontSize="20"><Run Text="Assigned To:"/><Run Text="{Binding assignedToName}" /></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </RelativePanel>
 
@@ -133,15 +135,17 @@
                 <Grid x:Name="MyTasks" >
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="AssignedtoMe" Text="My Tasks" FontSize="30" />
-                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="AssignedtoMe">
-                            <DataTemplate>
-                                <Grid>
-                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                        <TextBlock x:Name="Task1" Text="Task1" FontSize="25" />
-                                        <TextBlock x:Name="AssignedTo" Text="Member1" FontSize="20" />
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
+                        <ListView   HorizontalAlignment="Stretch" ItemsSource="{Binding myTasks, Mode=TwoWay}" RelativePanel.Below="AssignedtoMe">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{Binding title}" FontSize="25" />
+                                            <TextBlock Text="{Binding status}" FontSize="20" />
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </RelativePanel>
                 </Grid>
@@ -149,19 +153,20 @@
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="Members" Text="Members" FontSize="30" />
                         <SymbolIcon x:Name="AddMemberIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
-                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Members">
-                            <DataTemplate>
-                                <Grid>
-                                    <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                        <TextBlock x:Name="MemeberName" Text="Member" FontSize="25" />
-                                        <TextBlock x:Name="Position" Text="Team Leader" FontSize="20" RelativePanel.LeftOf="MemeberName" />
-                                    </RelativePanel>
-                                </Grid>
-                            </DataTemplate>
+                        <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Members" ItemsSource="{Binding teammembers, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{Binding name}" FontSize="25" />
+                                        </RelativePanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </RelativePanel>
                 </Grid>
-                <Grid x:Name="Documents" >
+                <!--<Grid x:Name="Documents" >
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="Doc" Text="Documents" FontSize="30" />
                         <SymbolIcon x:Name="AddDocumentIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
@@ -176,7 +181,7 @@
                             </DataTemplate>
                         </ListView>
                     </RelativePanel>
-                </Grid>
+                </Grid>-->
             </RelativePanel>
 
         </ScrollViewer>

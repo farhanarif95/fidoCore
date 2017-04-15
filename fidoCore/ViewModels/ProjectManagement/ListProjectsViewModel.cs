@@ -15,8 +15,17 @@ namespace fidoCore.ViewModels
     public class ListProjectsViewModel : ViewModelBase
     {
 
-        public List<Users> Users { get; set; }
+        public List<Projects> projects { get; set; }
         public string ConfirmPassword { get; set; }
+        public object selecteditem { get; set; }
+
+        public void ClickItemList(object sender, ItemClickEventArgs e)
+        {
+            if (e.ClickedItem!= null)
+            {
+                NavigationService.Navigate(typeof(Views.ProjectManagement.ProjectHome),((Projects)e.ClickedItem).id);
+            }
+        }
 
         public ListProjectsViewModel()
         {
@@ -38,19 +47,18 @@ namespace fidoCore.ViewModels
 
             }
             await Task.CompletedTask;
-            var sett = Services.SettingsServices.SettingsService.Instance.OrganisationId;
+            var sett = Services.SettingsServices.SettingsService.Instance.UserId;
             Views.Busy.SetBusy(true, "Loading Projects");
-          //   status = await ProjectServices.ListProjects(sett);
+            var status = await ProjectServices.ListProjects(sett);
             Views.Busy.SetBusy(false);
-            //if (status.result)
-            //{
-            //    if (status.data != null)
-            //    {
-            //        Users = status.data as List<Users>;
-            //        RaisePropertyChanged("Users");
-            //    }
-            //}
-
+            if (status.result)
+            {
+                if (status.data != null)
+                {
+                    projects = status.data as List<Projects>;
+                    RaisePropertyChanged("projects");
+                }
+            }
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)

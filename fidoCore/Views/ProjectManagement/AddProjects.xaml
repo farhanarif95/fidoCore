@@ -9,11 +9,11 @@
       xmlns:local="using:fidoCore.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:fidoCore.ViewModels"
-      x:Name="Adds"
+      x:Name="ThisPage"
       mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:DetailPageViewModel x:Name="ViewModel" />
+        <vm:AddProjectsViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -29,16 +29,10 @@
                         <Setter  Target="ClientGrid.(RelativePanel.Below)" Value="AddProject"/>
                         <Setter  Target="ClientGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.Below)" Value="ClientGrid"/>
-                        <Setter  Target="To.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="To.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="To.(RelativePanel.Below)" Value="From"/>
-                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="To"/>
+                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="ClientGrid"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -47,16 +41,11 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter  Target="AddProject.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="ClientGrid.(RelativePanel.RightOf)" Value="AddProject"/>
+                        <Setter  Target="AddProject.HorizontalAlignment" Value="Stretch"/>
                         <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.Below)" Value="AddProject"/>
-                        <Setter  Target="From.HorizontalAlignment" Value="Stretch"/>
-                        <Setter  Target="To.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="To.(RelativePanel.Below)" Value="ClientGrid"/>
-                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="From"/>
+                        <Setter  Target="ClientGrid.HorizontalAlignment" Value="Stretch"/>
+                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="AddProject"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
                         <Setter Target="Menu.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -66,16 +55,13 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter  Target="AddProject.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="ClientGrid.(RelativePanel.RightOf)" Value="AddProject"/>
+                        <Setter  Target="AddProject.HorizontalAlignment" Value="Stretch"/>
                         <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="From.(RelativePanel.Below)" Value="AddProject"/>
-                        <Setter  Target="To.(RelativePanel.AlignRightWithPanel)" Value="True"/>
-                        <Setter  Target="To.(RelativePanel.Below)" Value="ClientGrid"/>
-                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="From"/>
+                        <Setter  Target="ClientGrid.HorizontalAlignment" Value="Stretch"/>
+                        <Setter  Target="DescGrid.(RelativePanel.Below)" Value="AddProject"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                        <Setter  Target="DescGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
                         <Setter Target="Menu.Visibility" Value="Collapsed"/>
+
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -88,12 +74,13 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Text="Add Projects" >
-            <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Forward"/>
+                             Text="New Project" 
+                             EllipsisVisibility="Collapsed">
+            <AppBarButton x:Name="SubmitButton" Foreground="White" Click="{x:Bind ViewModel.Submit}"  Label="Submit" Icon="Forward"/>
 
         </controls:PageHeader>
-        <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
-            <AppBarButton Label="Submit" Icon="Forward"/>
+        <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <AppBarButton Label="Submit" Click="{x:Bind ViewModel.Submit}"  Icon="Forward"/>
         </CommandBar>
         <!--  content  -->
         <ScrollViewer  x:Name="myScroll"
@@ -103,22 +90,34 @@
                       RelativePanel.AlignLeftWithPanel="True"
                       RelativePanel.AlignRightWithPanel="True"
                       RelativePanel.Below="pageHeader"
-                      VerticalScrollBarVisibility="Auto" Margin="0,-3,0,3">
+                      VerticalScrollBarVisibility="Auto"  Margin="0,-3,0,3">
             <RelativePanel x:Name="MainView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
 
                 <Grid x:Name="AddProject" >
-                    <TextBox Text="{Binding ProjectName, Mode=TwoWay}" Margin="5" Header="Project Name" x:Name="ProjectName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"/>
+                    <StackPanel>
+                        <TextBox Text="{Binding project.projectName, Mode=TwoWay}" Margin="5" Header="Project Name" x:Name="ProjectName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"/>
+                        <ComboBox HorizontalAlignment="Stretch" Header="Project Leader" ItemsSource="{Binding Users}" DisplayMemberPath="name"  SelectedItem="{Binding selectedleader, Mode=TwoWay}" PlaceholderText="Select Lead">
+                            
+                        </ComboBox>
+                    </StackPanel>
                 </Grid>
                 <Grid x:Name="ClientGrid">
-                    <TextBox Text="{Binding CompanyName, Mode=TwoWay}" Margin="5" Header="Client Name" x:Name="ClientName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"  />
+                    <StackPanel>
+                        <TextBox Text="{Binding project.customerName, Mode=TwoWay}" Margin="5" Header="Client Name" x:Name="ClientName" HorizontalAlignment="Stretch" PlaceholderText="Minimum 5 Characters"  />
+                        <TextBox Text="{Binding project.customerEmail, Mode=TwoWay}" Margin="5" Header="Email" x:Name="Email" HorizontalAlignment="Stretch" PlaceholderText="hello@yourcompany.com" InputScope="EmailNameOrAddress"  />
+                        <TextBox Text="{Binding project.customerAddress , Mode=TwoWay}" Margin="5" Header="Address" x:Name="Address" HorizontalAlignment="Stretch" PlaceholderText="Address"  />
+                    </StackPanel>
                 </Grid>
-                <DatePicker  Header="From" x:Name="From" />
-                <DatePicker  Header="To" x:Name="To"/>
+
                 <Grid x:Name="DescGrid">
-                    <ComboBox SelectedItem="{Binding SelectedLeader, Mode=TwoWay}" HorizontalAlignment="Stretch" ItemsSource="{Binding TeamMembers, Mode=TwoWay}" Margin="5" Header="Project Lead" x:Name="Selected"  PlaceholderText="Select Leader"/>
-                    <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="5,75,5,5" Header="Description" x:Name="Desc" PlaceholderText="About Project"/>
-                 </Grid>
+                    <StackPanel>
+                        <DatePicker Date="{Binding project.startDate, Mode=TwoWay}"  Header="From" x:Name="From" />
+                        <DatePicker  Date="{Binding project.endDate, Mode=TwoWay}" Header="To" x:Name="To"/>
+                        <TextBox Text="{Binding project.description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="Desc" PlaceholderText="About Project"/>
+                    </StackPanel>
+                </Grid>
+
 
             </RelativePanel>
 
@@ -126,4 +125,3 @@
 
     </RelativePanel>
 </Page>
-

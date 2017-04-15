@@ -13,7 +13,7 @@
       mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:DetailPageViewModel x:Name="ViewModel" />
+        <vm:AddUsersViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -55,30 +55,30 @@
                              RelativePanel.AlignTopWithPanel="True"
                              Text="Add Team" 
                              EllipsisVisibility="Collapsed" >
-            <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Icon="Forward"/>
+            <AppBarButton x:Name="SubmitButton" Foreground="White" Label="Submit" Click="{x:Bind ViewModel.Submit}" Icon="Forward"/>
 
         </controls:PageHeader>
-        <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
-            <AppBarButton Label="Submit" Icon="Forward"/>
+        <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+            <AppBarButton Label="Submit" Click="{x:Bind ViewModel.Submit}" Icon="Forward"/>
         </CommandBar>
         <!--  content  -->
         <RelativePanel RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="pageHeader">
-            <SearchBox
+            <!--<SearchBox
             x:Name = "mySearchBox"
             FocusOnKeyboardInput = "False"
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
-            Height = "35"/>
-            <ScrollViewer RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="mySearchBox" >
-                <ListView   HorizontalAlignment="Stretch" 
+            Height = "35"/>-->
+            <ListView HorizontalAlignment="Stretch" ItemsSource="{Binding teams}"
                     RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <CheckBox x:Name="checkBox" Content="Team Member" HorizontalAlignment="Stretch"/>
+                            <CheckBox x:Name="checkBox" Content="{Binding name}" IsChecked="{Binding member, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
                         </Grid>
                     </DataTemplate>
-                </ListView>
-            </ScrollViewer>
+                </ListView.ItemTemplate>
+            </ListView>
         </RelativePanel>
     </RelativePanel>
 </Page>
