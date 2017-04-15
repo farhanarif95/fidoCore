@@ -26,5 +26,6 @@ namespace fidoCore.Views.ProjectManagement
         {
             this.InitializeComponent();
         }
+
     }
 }

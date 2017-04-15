@@ -12,15 +12,12 @@ using fidoBackend.Services;
 
 namespace fidoCore.ViewModels
 {
-    public class AddProjectsViewModel : ViewModelBase
+    public class AddUsersViewModel : ViewModelBase
     {
         public List<Users> Users { get; set; }
-        public string ConfirmPassword { get; set; }
-        public Projects project { get; set; }
-        public Users selectedleader { get; set; }
-        public AddProjectsViewModel()
+        public Temp projectId;
+        public AddUsersViewModel()
         {
-            project = new Projects(); 
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
 
@@ -38,6 +35,10 @@ namespace fidoCore.ViewModels
             {
 
             }
+            if(parameter!=null)
+            {
+                projectId = parameter as Temp;
+            }
             await Task.CompletedTask;
             var sett = Services.SettingsServices.SettingsService.Instance.OrganisationId;
             Views.Busy.SetBusy(true, "Loading Users");
@@ -48,6 +49,18 @@ namespace fidoCore.ViewModels
                 if (status.data != null)
                 {
                     Users = status.data as List<Users>;
+                    for (int i = 0; i < Users.Count; i++)
+                    {
+                        var enabled = projectId.myUsers.Where(x => x.id.Equals(Users[i].id)).FirstOrDefault();
+                        if (enabled != null)
+                        {
+                            Users[i].member = true;
+                        }
+                        else
+                        {
+                            Users[i].member = false;
+                        }
+                    }
                     RaisePropertyChanged("Users");
                 }
             }
@@ -64,49 +77,23 @@ namespace fidoCore.ViewModels
             {
                 dialog.Hide();
             };
-            if (string.IsNullOrWhiteSpace(project.customerName) || project.customerName.Length < 4)
+            var sett = Services.SettingsServices.SettingsService.Instance.UserId;
+            Views.Busy.SetBusy(true, "Saving Data");
+            var teams =await ProjectServices.GetTeamInProject(projectId.projectId);
+            Views.Busy.SetBusy(false);
+            if (teams.result)
             {
-                dialog.Content = "Name can't be empty";
+                dialog.Content = teams.result;
                 await dialog.ShowAsync();
-            }
-            else if (string.IsNullOrWhiteSpace(project.customerEmail))
-            {
-                dialog.Content = "Email Can't be empty";
-                await dialog.ShowAsync();
-            }
-            else if (string.IsNullOrWhiteSpace(project.customerAddress))
-            {
-                dialog.Content = "Address Can't be empty";
-                await dialog.ShowAsync();
-            }
-            else if (string.IsNullOrWhiteSpace(project.projectName))
-            {
-                dialog.Content = "Project Name must not be empty";
-                await dialog.ShowAsync();
-            }
-            else if (selectedleader == null)
-            {
-                dialog.Content = "Project Leads must be selected";
-                await dialog.ShowAsync();
+                NavigationService.Navigate(typeof(Views.ProjectManagement.ProjectHome), projectId.projectId);
             }
             else
             {
-                project.teamLeads = selectedleader.id;
-                Views.Busy.SetBusy(true, "Please hold while we register the user");
-                var userid = Services.SettingsServices.SettingsService.Instance.UserId;
-                var userstatus = await ProjectServices.AddProject(project, userid);
-                Views.Busy.SetBusy(false);
-                if (userstatus.result)
-                {
-                    NavigationService.Navigate(typeof(Views.ProjectManagement.ProjectHome),project.id);
-                }
-                else
-                {
-                    dialog.Title = "Can't Register User";
-                    dialog.Content = userstatus.message;
-                    await dialog.ShowAsync();
-                }
+                dialog.Content = teams.result;
+                await dialog.ShowAsync();
             }
+               
+
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
