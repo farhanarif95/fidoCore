@@ -69,7 +69,7 @@
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             Height = "35"/>-->
-            <ListView HorizontalAlignment="Stretch" ItemsSource="{Binding teams}"
+            <ListView HorizontalAlignment="Stretch" ItemsSource="{Binding Users, Mode=TwoWay}"
                     RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

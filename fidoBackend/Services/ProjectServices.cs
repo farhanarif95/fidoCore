@@ -75,7 +75,7 @@ namespace fidoBackend.Services
             }
         }
 
-        public async static Task UpdateTeamInProject(List<Users> users, Temp projectId)
+        public async static Task<Status> UpdateTeamInProject(List<Users> users, Temp projectId)
         {
             try
             {
@@ -96,7 +96,6 @@ namespace fidoBackend.Services
                                 team.userId = users[i].id;
                                 await BaseService.MobileService.GetTable<Teams>().InsertAsync(team);
                             }
-
                         }
                         else
                         {
@@ -108,14 +107,23 @@ namespace fidoBackend.Services
                             }
                         }
                     }
+                    return new Models.Status() { result = true, message = "Success" };
                 }
                 else
                 {
+                    for (int i = 0; i < users.Count; i++)
+                    {
+                        var team = new Teams();
+                        team.projectId = projectId.projectId;
+                        team.userId = users[i].id;
+                        await BaseService.MobileService.GetTable<Teams>().InsertAsync(team);
+                    }
+                    return new Models.Status() { result =true, message = "Success" };
                 }
             }
             catch (Exception e)
             {
-
+                return new Models.Status() { result = false, message = e.ToString() };
             }
         }
 
@@ -154,7 +162,6 @@ namespace fidoBackend.Services
             var res = await BaseService.HttpGetOperation(s);
             if (res != null)
             {
-
                 var dat = JsonConvert.DeserializeObject<List<Users>>(res.data.ToString());
                 return new Models.Status() { result = true, message = "Successfully loaded", data = dat }; ;
             }

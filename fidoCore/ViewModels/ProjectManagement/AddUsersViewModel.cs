@@ -79,11 +79,11 @@ namespace fidoCore.ViewModels
             };
             var sett = Services.SettingsServices.SettingsService.Instance.UserId;
             Views.Busy.SetBusy(true, "Saving Data");
-            var teams =await ProjectServices.GetTeamInProject(projectId.projectId);
+            var teams = await ProjectServices.UpdateTeamInProject(Users, projectId);
             Views.Busy.SetBusy(false);
             if (teams.result)
             {
-                dialog.Content = teams.result;
+                dialog.Content = teams.message;
                 await dialog.ShowAsync();
                 NavigationService.Navigate(typeof(Views.ProjectManagement.ProjectHome), projectId.projectId);
             }
