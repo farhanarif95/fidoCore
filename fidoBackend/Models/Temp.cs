@@ -11,4 +11,10 @@ namespace fidoBackend.Models
         public string projectId { get; set; }
         public List<Users> myUsers { get; set; }
     }
+
+    public class Temp1
+    {
+        public string projectId { get; set; }
+        public Tasks task { get; set; }
+    }
 }

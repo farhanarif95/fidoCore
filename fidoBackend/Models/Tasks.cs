@@ -17,7 +17,7 @@ namespace fidoBackend.Models
         [JsonIgnore]
         public string assignedToName { get; set; }
         public string status { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public DateTimeOffset startDate { get; set; }
+        public DateTimeOffset endDate { get; set; }
     }
 }
