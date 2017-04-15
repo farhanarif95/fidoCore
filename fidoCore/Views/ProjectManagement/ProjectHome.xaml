@@ -152,7 +152,7 @@
                 <Grid x:Name="Team" >
                     <RelativePanel Margin="10,0">
                         <TextBlock x:Name="Members" Text="Members" FontSize="30" />
-                        <SymbolIcon x:Name="AddMemberIcon" Width="48" Height="48" Symbol="Add" RelativePanel.AlignRightWithPanel="True"/>
+                        <SymbolIcon x:Name="AddMemberIcon" Width="48" Height="48" Symbol="Add" Tapped="{x:Bind ViewModel.AddMembers}" RelativePanel.AlignRightWithPanel="True"/>
                         <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Members" ItemsSource="{Binding teammembers, Mode=TwoWay}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

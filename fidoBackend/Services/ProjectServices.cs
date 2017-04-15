@@ -75,7 +75,7 @@ namespace fidoBackend.Services
             }
         }
 
-        public async static Task UpdateTeamInProject(List<Users> users, Temp projectId)
+        public async static Task<Status> UpdateTeamInProject(List<Users> users, Temp projectId)
         {
             try
             {
@@ -111,11 +111,18 @@ namespace fidoBackend.Services
                 }
                 else
                 {
+                    for (int i = 0; i < users.Count; i++)
+                    {
+                        var team = new Teams();
+                        team.projectId = projectId.projectId;
+                        team.userId = users[i].id;
+                        await BaseService.MobileService.GetTable<Teams>().InsertAsync(team);
+                    }
                 }
             }
             catch (Exception e)
             {
-
+                return new Models.Status() { result = false, message = e.ToString() };
             }
         }
 
