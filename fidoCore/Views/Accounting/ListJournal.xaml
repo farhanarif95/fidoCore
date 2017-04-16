@@ -96,9 +96,9 @@
                     <TextBlock x:Name="ParticularLabel"   Margin="5,0,0,0" Text="Particular:" />
                     <TextBlock x:Name="Particular"  Text="{Binding particular}"  Margin="5,0,0,0" FontWeight="Bold"/>
                     <TextBlock x:Name="DebitedToLabel" Text="Debited:"  Margin="5,0,0,0"/>
-                    <TextBlock x:Name="DebitedTo" Text="{Binding debit}"  Margin="5,0,0,0" FontWeight="Bold"/>
+                    <TextBlock x:Name="DebitedTo" Text="{Binding debitedto}"  Margin="5,0,0,0" FontWeight="Bold"/>
                     <TextBlock x:Name="CreditedToLabel" Text="Credited:"  Margin="5,0,0,0"/>
-                    <TextBlock x:Name="CreditedTo" Text="{Binding credit}"  Margin="5,0,0,0" FontWeight="Bold"/>
+                    <TextBlock x:Name="CreditedTo" Text="{Binding creditedto}"  Margin="5,0,0,0" FontWeight="Bold"/>
                     <TextBlock x:Name="AmountLabel" Text="Amount:"  Margin="5,0,0,0"/>
                     <TextBlock x:Name="Amount"  Margin="5,0,0,0" FontWeight="Bold"><Run Text="Rs. "/><Run Text="{Binding amount}"/></TextBlock>
                 </RelativePanel>
@@ -157,7 +157,7 @@
                     <Button x:Name="SubmitButton" Margin="5,5,5,5" Content="Get Report" Click="{x:Bind ViewModel.Submit}"/>
                 </RelativePanel>
 
-                <ListView ItemTemplate="{StaticResource accounttable}" ItemsSource="{Binding Journals, Mode=TwoWay}" SelectionMode="Single" ItemClick="{x:Bind ViewModel.ClickItemList}">
+                <ListView ItemTemplate="{StaticResource accounttable}" IsItemClickEnabled="True" ItemsSource="{Binding Journals, Mode=TwoWay}" SelectionMode="Single" ItemClick="{x:Bind ViewModel.ClickItemList}">
 
                 </ListView>
             </StackPanel>

@@ -61,8 +61,8 @@ namespace fidoCore.ViewModels
                 Journals = journals.data as List<Accounts>;
                 for(int i=0;i<Journals.Count;i++)
                 {
-                    Journals[i].debit = Ledgers.Where(x => x.id.Equals(Journals[i].debit)).FirstOrDefault().title;
-                    Journals[i].credit = Ledgers.Where(x => x.id.Equals(Journals[i].credit)).FirstOrDefault().title;
+                    Journals[i].debitedto = Ledgers.Where(x => x.id.Equals(Journals[i].debit)).FirstOrDefault().title;
+                    Journals[i].creditedto = Ledgers.Where(x => x.id.Equals(Journals[i].credit)).FirstOrDefault().title;
                 }
                 //foreach (var x in Journals)
                 //{
@@ -82,12 +82,12 @@ namespace fidoCore.ViewModels
             if (journals.result)
             {
                 Journals = journals.data as List<Accounts>;
-                try { 
-                foreach(var x in Journals)
-                {
-                    x.debit = Ledgers.Where(z => z.id.Equals(x.id)).First().title;
-                    x.credit = Ledgers.Where(z => z.id.Equals(x.id)).First().title;
-                }
+                try {
+                    for (int i = 0; i < Journals.Count; i++)
+                    {
+                        Journals[i].debitedto = Ledgers.Where(x => x.id.Equals(Journals[i].debit)).FirstOrDefault().title;
+                        Journals[i].creditedto = Ledgers.Where(x => x.id.Equals(Journals[i].credit)).FirstOrDefault().title;
+                    }
                 }
                 catch(Exception e)
                 {
