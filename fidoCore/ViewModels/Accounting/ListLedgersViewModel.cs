@@ -14,7 +14,18 @@ namespace fidoCore.ViewModels
 {
     public class ListLedgersViewModel : ViewModelBase
     {
-       
+
+        public List<Ledgers> ledgers { get; set; }
+        public object selecteditem { get; set; }
+
+        public void ClickItemList(object sender, ItemClickEventArgs e)
+        {
+            if (e.ClickedItem != null)
+            {
+                NavigationService.Navigate(typeof(Views.Accounting.AddLedgers), ((Ledgers)e.ClickedItem));
+            }
+        }
+
         public ListLedgersViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -35,18 +46,18 @@ namespace fidoCore.ViewModels
 
             }
             await Task.CompletedTask;
-        }
-
-        async public void Submit()
-        {
-            ContentDialog dialog = new ContentDialog();
-            dialog.Title = "Error";
-            dialog.IsPrimaryButtonEnabled = true;
-            dialog.PrimaryButtonText = "OK";
-            dialog.PrimaryButtonClick += delegate
+            var sett = Services.SettingsServices.SettingsService.Instance.OrganisationId;
+            Views.Busy.SetBusy(true, "Loading Ledgers");
+            var status = await AccountingServices.ListLedgers(sett);
+            Views.Busy.SetBusy(false);
+            if (status.result)
             {
-                dialog.Hide();
-            };
+                if (status.data != null)
+                {
+                    ledgers = status.data as List<Ledgers>;
+                    RaisePropertyChanged("ledgers");
+                }
+            }
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
@@ -68,10 +79,9 @@ namespace fidoCore.ViewModels
             await Task.CompletedTask;
         }
 
-        public void AddUsers()
+        public void AddLedgers()
         {
-            NavigationService.Navigate(typeof(Views.addUsers));
+            NavigationService.Navigate(typeof(Views.Accounting.AddLedgers));
         }
-
     }
 }
