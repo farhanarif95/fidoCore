@@ -117,6 +117,9 @@
     <Compile Include="ViewModels\ListUsersViewModel.cs" />
     <Compile Include="ViewModels\SignupViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="Views\Accounting\AccountingHome.xaml.cs">
+      <DependentUpon>AccountingHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\addUsers.xaml.cs">
       <DependentUpon>addUsers.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\Accounting\AccountingHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\addUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,7 +265,6 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="ViewModels\Accounting\" />
-    <Folder Include="Views\Accounting\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="SQLite.UWP.2015, Version=3.17.0">
