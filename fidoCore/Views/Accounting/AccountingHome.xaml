@@ -54,14 +54,19 @@
         <!--  content  -->
         <ScrollViewer  x:Name="myScroll"
             EntranceNavigationTransitionInfo.IsTargetElement="True"
-                      Padding="12,8,0,0"
+                      Padding="5,8,5,0"
                       RelativePanel.AlignBottomWithPanel="True"
                       RelativePanel.AlignLeftWithPanel="True"
                       RelativePanel.AlignRightWithPanel="True"
                       RelativePanel.Below="pageHeader"
                       VerticalScrollBarVisibility="Auto">
             <RelativePanel x:Name="MainView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-            <!--Content SHould be here-->
+                <Button x:Name="Ledgers" Margin="5" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Content="Ledgers" Click="{x:Bind ViewModel.GoToLedgers}"/>
+                <Button x:Name="JournalEntry" RelativePanel.Below="Ledgers" Margin="5" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Content="Journal Entry" Click="{x:Bind ViewModel.GoToJournalEntry}"/>
+                <Button x:Name="JorunalListing" Margin="5" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="JournalEntry" Content="Journal Listing" Click="{x:Bind ViewModel.GoToJournalListing}"/>
+                <Button x:Name="InE" Margin="5" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="JorunalListing" Content="Income and Expenditure" Click="{x:Bind ViewModel.GoToIncomeAndExpenditure}"/>
+                <Button x:Name="RnP" Margin="5" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="InE" Content="Receipts and Payments" Click="{x:Bind ViewModel.GoToReceiptsAndPayments}"/>
+                <Button x:Name="BalanceSheet" Margin="5" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="RnP" Content="Balance Sheet" Click="{x:Bind ViewModel.GoToBalanceSheet}"/>
             </RelativePanel>
 
         </ScrollViewer>
