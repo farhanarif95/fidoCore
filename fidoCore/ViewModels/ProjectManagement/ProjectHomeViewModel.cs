@@ -66,18 +66,6 @@ namespace fidoCore.ViewModels
             }
             await Task.CompletedTask;
             var sett = Services.SettingsServices.SettingsService.Instance.UserId;
-            Views.Busy.SetBusy(true, "Loading All Tasks for the Project");
-            var loadedtasks = await ProjectServices.ListTasks(sett,projectId);
-            Views.Busy.SetBusy(false);
-            if (loadedtasks.result)
-            {
-                if (loadedtasks.data != null)
-                {
-                    tasks = loadedtasks.data as List<Tasks>;
-                    RaisePropertyChanged("tasks");
-                }
-            }
-
             Views.Busy.SetBusy(true, "Loading Assigned Tasks for the Project");
             var assigned = await ProjectServices.ListAssignedTasksinProject(sett, projectId);
             Views.Busy.SetBusy(false);
@@ -99,8 +87,28 @@ namespace fidoCore.ViewModels
                 {
                     teammembers = status.data as List<Users>;
                     RaisePropertyChanged("teammembers");
+                   
+        
                 }
             }
+            
+            Views.Busy.SetBusy(true, "Loading All Tasks for the Project");
+            var loadedtasks = await ProjectServices.ListTasksinProject(projectId);
+            Views.Busy.SetBusy(false);
+            if (loadedtasks.result)
+            {
+                if (loadedtasks.data != null)
+                {
+                    tasks = loadedtasks.data as List<Tasks>;
+                    if (tasks != null)
+                        for (int i = 0; i < tasks.Count; i++)
+                        {
+                            tasks[i].assignedToName = teammembers.Where(x => x.id.Equals(tasks[i].assignedTo)).First().name;
+                        }
+                    RaisePropertyChanged("tasks");
+                }
+            }
+
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
