@@ -42,9 +42,10 @@
                     <VisualState.Setters>
                         <Setter  Target="AddProject.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="AddProject.HorizontalAlignment" Value="Stretch"/>
-                        <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter  Target="ClientGrid.(RelativePanel.RightOf)" Value="DescGrid"/>
                         <Setter  Target="ClientGrid.HorizontalAlignment" Value="Stretch"/>
                         <Setter  Target="DescGrid.(RelativePanel.Below)" Value="AddProject"/>
+                        <Setter Target="DescGrid.Margin" Value="0,0,50,0"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter Target="Menu.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
@@ -56,8 +57,9 @@
                     <VisualState.Setters>
                         <Setter  Target="AddProject.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter  Target="AddProject.HorizontalAlignment" Value="Stretch"/>
-                        <Setter  Target="ClientGrid.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                        <Setter  Target="ClientGrid.(RelativePanel.RightOf)" Value="DescGrid"/>
                         <Setter  Target="ClientGrid.HorizontalAlignment" Value="Stretch"/>
+                        <Setter Target="DescGrid.Margin" Value="0,0,200,0"/>
                         <Setter  Target="DescGrid.(RelativePanel.Below)" Value="AddProject"/>
                         <Setter  Target="DescGrid.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
                         <Setter Target="Menu.Visibility" Value="Collapsed"/>

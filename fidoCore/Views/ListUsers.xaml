@@ -51,7 +51,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <RelativePanel>
-                        <TextBlock x:Name="NameLabel" Margin="5">
+                        <SymbolIcon Symbol="Contact" x:Name="syy" />
+                        <TextBlock x:Name="NameLabel" Margin="5" RelativePanel.RightOf="syy">
                             <Run Text="{Binding name}"/>
                             <Run Text=","/>
                         </TextBlock>

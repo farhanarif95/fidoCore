@@ -50,12 +50,13 @@
         <ListView x:Name="UsersList" Margin="0,60,0,60" ItemClick="{x:Bind ViewModel.ClickItemList}"  SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding selecteditem, Mode=TwoWay}" ItemsSource="{Binding projects, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <RelativePanel>
-                        <TextBlock x:Name="NameLabel" Margin="5">
+                    <RelativePanel Margin="0,10">
+                        <SymbolIcon x:Name="ssss" Symbol="Bullets" Margin="5"  />
+                        <TextBlock x:Name="NameLabel" Margin="5" RelativePanel.RightOf="ssss" FontSize="17">
                             <Run Text="{Binding projectName}"/>
-                            <Run Text=" of "/>
                         </TextBlock>
-                        <TextBlock x:Name="EmailLabel" Margin="5" RelativePanel.RightOf="NameLabel" Text="{Binding customerName}"/>
+                        <SymbolIcon x:Name="sss" Symbol="People" RelativePanel.Below="ssss" Margin="5"/>
+                        <TextBlock x:Name="EmailLabel" Margin="5" RelativePanel.Below="NameLabel" RelativePanel.RightOf="sss" Text="{Binding customerName}"/>
                     </RelativePanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
