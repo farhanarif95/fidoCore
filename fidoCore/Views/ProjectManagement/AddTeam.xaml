@@ -63,6 +63,7 @@
         </CommandBar>
         <!--  content  -->
         <RelativePanel RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="pageHeader">
+            <TextBlock x:Name="AssignedtoMe" Text="Select the members of the project" FontSize="20" Margin="10,5,5,10" />
             <!--<SearchBox
             x:Name = "mySearchBox"
             FocusOnKeyboardInput = "False"
@@ -70,7 +71,7 @@
             RelativePanel.AlignRightWithPanel="True"
             Height = "35"/>-->
             <ListView HorizontalAlignment="Stretch" ItemsSource="{Binding Users, Mode=TwoWay}"
-                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="AssignedtoMe">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>

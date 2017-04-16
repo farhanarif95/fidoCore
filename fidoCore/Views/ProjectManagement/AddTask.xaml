@@ -48,16 +48,16 @@
                     <VisualState.Setters>
                         <Setter Target="One.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
                         <Setter Target="One.Margin" Value="0,0,100,0"/>
-                        <Setter Target="Two.(RelativePanel.Below)" Value="pageHeader"/>
+                        <Setter Target="Two.(RelativePanel.Below)" Value="pageHeader"/> 
                         <Setter Target="Two.(RelativePanel.RightOf)" Value="One"/>
                         <Setter Target="Three.(RelativePanel.Below)" Value="One"/>
                         <Setter Target="Three.Margin" Value="0,0,100,0"/>
                         <Setter Target="Four.(RelativePanel.RightOf)" Value="Three"/>
-                        <Setter Target=" Four.(RelativePanel.Below)" Value="Two"/>
+                        <Setter Target="Four.(RelativePanel.Below)" Value="Two"/>
                         <Setter Target="FromDate.Margin" Value="0,0,0,0"/>
-                        <Setter Target=" FromDate.(RelativePanel.Below)" Value="Three"/>
+                        <Setter Target="FromDate.(RelativePanel.Below)" Value="Three"/>
                         <Setter Target="ToDate.(RelativePanel.RightOf)" Value="FromDate"/>
-                        <Setter Target=" ToDate.(RelativePanel.Below)" Value="Four"/>
+                        <Setter Target="ToDate.(RelativePanel.Below)" Value="Four"/>
                         <Setter Target="Menu.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -73,12 +73,12 @@
                         <Setter Target="Three.(RelativePanel.Below)" Value="One"/>
                         <Setter Target="Three.Margin" Value="0,0,200,0"/>
                         <Setter Target="Four.(RelativePanel.RightOf)" Value="Three"/>
-                        <Setter Target=" Four.(RelativePanel.Below)" Value="Two"/>
-                        <Setter Target="FromDate.Margin" Value="0,0,100,0"/>
-                        <Setter Target=" FromDate.(RelativePanel.Below)" Value="Three"/>
+                        <Setter Target="Four.(RelativePanel.Below)" Value="Two"/>
+                        <Setter Target="FromDate.Margin" Value="0,0,100,0"/> 
+                        <Setter Target="FromDate.(RelativePanel.Below)" Value="Three"/> 
                         <Setter Target="ToDate.(RelativePanel.RightOf)" Value="FromDate"/>
-                        <Setter Target=" ToDate.(RelativePanel.Below)" Value="Four"/>
-                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
+                        <Setter Target="ToDate.(RelativePanel.Below)" Value="Four"/>
+                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/> 
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -100,17 +100,18 @@
             <AppBarButton Label="Submit" Click="{x:Bind ViewModel.Submit}" Icon="Save"/>
         </CommandBar>
         <!-- content -->
+
         <Grid x:Name="One" RelativePanel.Below="pageHeader" >
-            <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Task Name" x:Name="TaskName" PlaceholderText="Minimum 5 Characters"/>
+            <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Task Name" x:Name="TaskName" PlaceholderText="Minimum 5 Characters       "/>
         </Grid>   
         <Grid x:Name="Two" >
-            <ComboBox HorizontalAlignment="Stretch"  Margin="5,5,4.4,5" Header="Assigned to"  ItemsSource="{Binding Users}" DisplayMemberPath="name" SelectedItem="{Binding selectedleader, Mode=TwoWay}" PlaceholderText="Select Member"/>
+            <ComboBox HorizontalAlignment="Stretch"  Margin="5,5,4.4,5" Header="Assigned to"  ItemsSource="{Binding Users}" DisplayMemberPath="name" SelectedItem="{Binding selectedleader, Mode=TwoWay}" PlaceholderText="Select Member      "/>
         </Grid>
         <Grid x:Name="Three" >
-            <TextBox Text="{Binding task.description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="TaskDesc" PlaceholderText="What is this task about?"/>
+            <TextBox Text="{Binding task.description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="TaskDesc" PlaceholderText="What is this task about?       "/>
         </Grid>
         <Grid x:Name="Four" >
-            <TextBox Text="{Binding task.status, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Status" x:Name="TaskStatus" PlaceholderText="How far the task is done?"/>
+            <TextBox Text="{Binding task.status, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Status" x:Name="TaskStatus" PlaceholderText="How far the task is done?             "/>
         </Grid>
         <Grid x:Name="FromDate" >
             <DatePicker  Margin="5,5,4.4,5" Header="From" Date="{Binding task.startDate, Mode=TwoWay}" x:Name="From"/>

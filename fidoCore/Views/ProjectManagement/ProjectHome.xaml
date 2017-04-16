@@ -115,17 +115,17 @@
             <RelativePanel x:Name="MainView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
                 <Grid x:Name="Tasks" Margin="0,10,5,60" >
                     <RelativePanel Margin="10,0">
-                        <TextBlock x:Name="Todo" Text="Todo's" FontSize="20" />
-                        <SymbolIcon x:Name="AddTaskIcon" Symbol="Add" Tapped="{x:Bind ViewModel.AddTasks}" RelativePanel.AlignRightWithPanel="True" Height="20" VerticalAlignment="Top"/>
+                        <TextBlock x:Name="Todo" Text="Todo's" FontSize="22" Margin="0,0,0,5" />
+                        <SymbolIcon x:Name="AddTaskIcon" Symbol="Add" Tapped="{x:Bind ViewModel.AddTasks}" RelativePanel.AlignRightWithPanel="True" VerticalAlignment="Top"/>
                         <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Todo" ItemsSource="{Binding tasks, Mode=TwoWay}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,5">
                                             <SymbolIcon Symbol="Paste" x:Name="s" Margin="0,0,4,0"/>
                                             <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RelativePanel.RightOf="s">
-                                            <TextBlock Text="{Binding title}" FontSize="15"  />
-                                            <TextBlock ><Run Text="Assigned To:"/><Run Text="{Binding assignedToName}"/></TextBlock>
+                                            <TextBlock Text="{Binding title}" FontSize="17"  />
+                                            <TextBlock ><Run Text="Assigned To: "/><Run Text="{Binding assignedToName}"/></TextBlock>
                                         </StackPanel>
                                         </RelativePanel>
                                     </Grid>
@@ -137,15 +137,15 @@
                 </Grid>
                 <Grid x:Name="MyTasks" Margin="0,10,5,60" >
                     <RelativePanel Margin="10,0">
-                        <TextBlock x:Name="AssignedtoMe" Text="My Tasks" FontSize="20" />
+                        <TextBlock x:Name="AssignedtoMe" Text="My Tasks" FontSize="22" Margin="0,0,0,5" />
                         <ListView   HorizontalAlignment="Stretch" ItemsSource="{Binding myTasks, Mode=TwoWay}" ItemClick="{x:Bind ViewModel.ClickItemList}"  RelativePanel.Below="AssignedtoMe">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,5">
                                             <SymbolIcon Symbol="Paste" x:Name="s1" Margin="0,0,4,0"/>
                                             <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RelativePanel.RightOf="s1">
-                                                <TextBlock Text="{Binding title}" FontSize="15" />
+                                                <TextBlock Text="{Binding title}" FontSize="17" />
                                                 <TextBlock Text="{Binding status}" />
                                             </StackPanel>
                                         </RelativePanel>
@@ -157,7 +157,7 @@
                 </Grid>
                 <Grid x:Name="Team" Margin="0,10,5,60">
                     <RelativePanel Margin="10,0">
-                        <TextBlock x:Name="Members" Text="Members" FontSize="20" />
+                        <TextBlock x:Name="Members" Text="Members" FontSize="22" />
                         <SymbolIcon x:Name="AddMemberIcon" Symbol="Add" Tapped="{x:Bind ViewModel.AddMembers}" RelativePanel.AlignRightWithPanel="True"/>
                         <ListView   HorizontalAlignment="Stretch" RelativePanel.Below="Members" ItemsSource="{Binding teammembers, Mode=TwoWay}">
                             <ListView.ItemTemplate>
