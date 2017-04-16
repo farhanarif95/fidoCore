@@ -30,7 +30,15 @@ namespace fidoCore.ViewModels
                 NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask), obj);
             }
         }
-
+        public void ClickMyTask(object sender, ItemClickEventArgs e)
+        {
+            if (e.ClickedItem != null)
+            {
+                var obj = new Temp1();
+                obj.task = ((Tasks)e.ClickedItem);
+                NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask), obj);
+            }
+        }
         public void EditTasks()
         {
 

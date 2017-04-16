@@ -44,7 +44,7 @@ namespace fidoCore.ViewModels
                 var temp = parameter as Temp1;
                 if (temp.task != null)
                 {
-                    task = parameter as Tasks;
+                    task = temp.task;
                     RaisePropertyChanged("task");
                 }
                 else
@@ -70,6 +70,7 @@ namespace fidoCore.ViewModels
                     if(task.projectId!=null)
                     {
                         selectedleader = Users.Where(x => x.id.Equals(task.assignedTo)).FirstOrDefault();
+                        RaisePropertyChanged("selectedleader");
                         RaisePropertyChanged("Users");
                     }
                 }
