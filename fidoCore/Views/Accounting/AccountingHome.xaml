@@ -6,10 +6,9 @@
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:fidoCore.Views"
+      xmlns:local="using:fidoCore.Views.Accounting"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:fidoCore.ViewModels"
-      x:Name="AccountingHome"
       mc:Ignorable="d">
 
     <Page.DataContext>
