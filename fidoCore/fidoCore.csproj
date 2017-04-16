@@ -105,6 +105,7 @@
     <Compile Include="Helpers\Encyrption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
+    <Compile Include="ViewModels\Accounting\AccountHomeViewModel.cs" />
     <Compile Include="ViewModels\Accounting\ListJournalsViewModel.cs" />
     <Compile Include="ViewModels\Accounting\JournalEntryViewModel.cs" />
     <Compile Include="ViewModels\Accounting\ListLedgersViewModel.cs" />

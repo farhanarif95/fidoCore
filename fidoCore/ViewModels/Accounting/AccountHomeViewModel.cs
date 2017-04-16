@@ -1,4 +1,4 @@
-using Template10.Mvvm;
+﻿using Template10.Mvvm;
 using System.Collections.Generic;
 using System;
 using System.Linq;
@@ -12,21 +12,12 @@ using fidoBackend.Services;
 
 namespace fidoCore.ViewModels
 {
-    public class ListLedgersViewModel : ViewModelBase
+    public class AccountHomeViewModel : ViewModelBase
     {
 
-        public List<Ledgers> ledgers { get; set; }
-        public object selecteditem { get; set; }
 
-        public void ClickItemList(object sender, ItemClickEventArgs e)
-        {
-            if (e.ClickedItem != null)
-            {
-                NavigationService.Navigate(typeof(Views.Accounting.AddLedgers), ((Ledgers)e.ClickedItem));
-            }
-        }
 
-        public ListLedgersViewModel()
+        public AccountHomeViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -44,19 +35,6 @@ namespace fidoCore.ViewModels
             if (suspensionState.Any())
             {
 
-            }
-            await Task.CompletedTask;
-            var sett = Services.SettingsServices.SettingsService.Instance.OrganisationId;
-            Views.Busy.SetBusy(true, "Loading Ledgers");
-            var status = await AccountingServices.ListLedgers(sett);
-            Views.Busy.SetBusy(false);
-            if (status.result)
-            {
-                if (status.data != null)
-                {
-                    ledgers = status.data as List<Ledgers>;
-                    RaisePropertyChanged("ledgers");
-                }
             }
         }
 
@@ -79,9 +57,29 @@ namespace fidoCore.ViewModels
             await Task.CompletedTask;
         }
 
-        public void AddLedger()
+        public void GoToJournalEntry()
         {
-            NavigationService.Navigate(typeof(Views.Accounting.AddLedgers));
+            NavigationService.NavigateAsync(typeof(Views.Accounting.AddJournal));
+        }
+        public void GoToJournalListing()
+        {
+            NavigationService.NavigateAsync(typeof(Views.Accounting.ListJournal));
+        }
+        public void GoToIncomeAndExpenditure()
+        {
+
+        }
+        public void GoToReceiptsAndPayments()
+        {
+
+        }
+        public void GoToBalanceSheet()
+        {
+
+        }
+        public void GoToLedgers()
+        {
+            NavigationService.NavigateAsync(typeof(Views.Accounting.ListLedgers));
         }
     }
 }

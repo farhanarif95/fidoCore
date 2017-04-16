@@ -12,7 +12,7 @@
       mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:ProjectHomeViewModel x:Name="ViewModel" />
+        <vm:AccountHomeViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

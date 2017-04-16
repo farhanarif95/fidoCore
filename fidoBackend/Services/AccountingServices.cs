@@ -16,7 +16,10 @@ namespace fidoBackend.Services
         {
             try
             {
-                await MobileService.GetTable<Ledgers>().InsertAsync(ledger);
+                if(ledger.id==null)
+                    await MobileService.GetTable<Ledgers>().InsertAsync(ledger);
+                else
+                    await MobileService.GetTable<Ledgers>().UpdateAsync(ledger);
                 return new Models.Status() { result = true, message = "Successfully Added" };
             }
             catch (Exception e)
