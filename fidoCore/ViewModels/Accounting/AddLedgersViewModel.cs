@@ -44,8 +44,8 @@ namespace fidoCore.ViewModels
             {
                 ledger = parameter as Ledgers;
                 SelectedItem = ledger.group;
-                RaisePropertyChanged("groups");
                 RaisePropertyChanged("ledger");
+                RaisePropertyChanged("SelectedItem");
             }
             else
             {

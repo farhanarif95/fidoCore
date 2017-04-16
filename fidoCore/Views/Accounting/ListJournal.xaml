@@ -7,11 +7,104 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:fidoCore.ViewModels"
+    x:Name="Test"
     mc:Ignorable="d">
     <Page.DataContext>
         <vm:ListJournalsViewModel x:Name="ViewModel" />
-    </Page.DataContext> 
+    </Page.DataContext>
 
+    <Page.Resources>
+        <DataTemplate x:Name="accounttable">
+            <UserControl>
+              
+                <RelativePanel>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                            <VisualState x:Name="VisualStateNarrow">
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="0" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Target="Date.(RelativePanel.RightOf)" Value="DateLabel"/>
+
+                                    <Setter Target="ParticularLabel.(RelativePanel.Below)" Value="DateLabel"/>
+                                    <Setter Target="Particular.(RelativePanel.RightOf)" Value="ParticularLabel"/>
+                                    <Setter Target="Particular.(RelativePanel.Below)" Value="DateLabel"/>
+
+                                    <Setter Target="DebitedToLabel.(RelativePanel.Below)" Value="ParticularLabel"/>
+                                    <Setter Target="DebitedTo.(RelativePanel.RightOf)" Value="DebitedToLabel"/>
+                                    <Setter Target="DebitedTo.(RelativePanel.Below)" Value="ParticularLabel"/>
+
+                                    <Setter Target="CreditedToLabel.(RelativePanel.Below)" Value="DebitedToLabel"/>
+                                    <Setter Target="CreditedTo.(RelativePanel.RightOf)" Value="CreditedToLabel"/>
+                                    <Setter Target="CreditedTo.(RelativePanel.Below)" Value="DebitedToLabel"/>
+
+                                    <Setter Target="AmountLabel.(RelativePanel.Below)" Value="CreditedToLabel"/>
+                                    <Setter Target="Amount.(RelativePanel.RightOf)" Value="AmountLabel"/>
+                                    <Setter Target="Amount.(RelativePanel.Below)" Value="CreditedToLabel"/>
+
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="VisualStateNormal">
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="521" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Target="Date.(RelativePanel.RightOf)" Value="DateLabel"/>
+
+                                    <Setter Target="ParticularLabel.(RelativePanel.RightOf)" Value="Date"/>
+                                    <Setter Target="Particular.(RelativePanel.RightOf)" Value="ParticularLabel"/>
+
+                                    <Setter Target="AmountLabel.(RelativePanel.RightOf)" Value="Particular"/>
+                                    <Setter Target="Amount.(RelativePanel.RightOf)" Value="AmountLabel"/>
+
+                                    <Setter Target="DebitedToLabel.(RelativePanel.Below)" Value="DateLabel"/>
+                                    <Setter Target="DebitedTo.(RelativePanel.RightOf)" Value="DebitedToLabel"/>
+                                    <Setter Target="DebitedTo.(RelativePanel.Below)" Value="DateLabel"/>
+
+                                    <Setter Target="CreditedToLabel.(RelativePanel.RightOf)" Value="DebitedTo"/>
+                                    <Setter Target="CreditedTo.(RelativePanel.RightOf)" Value="CreditedToLabel"/>
+                                    <Setter Target="CreditedToLabel.(RelativePanel.Below)" Value="DateLabel"/>
+                                    <Setter Target="CreditedTo.(RelativePanel.Below)" Value="DateLabel"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="VisualStateWide">
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="1200" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+
+                                    <Setter Target="Date.(RelativePanel.RightOf)" Value="DateLabel"/>
+
+                                    <Setter Target="ParticularLabel.(RelativePanel.RightOf)" Value="Date"/>
+                                    <Setter Target="Particular.(RelativePanel.RightOf)" Value="ParticularLabel"/>
+
+                                    <Setter Target="AmountLabel.(RelativePanel.RightOf)" Value="Particular"/>
+                                    <Setter Target="Amount.(RelativePanel.RightOf)" Value="AmountLabel"/>
+
+                                    <Setter Target="DebitedToLabel.(RelativePanel.RightOf)" Value="Amount"/>
+                                    <Setter Target="DebitedTo.(RelativePanel.RightOf)" Value="DebitedToLabel"/>
+
+                                    <Setter Target="CreditedToLabel.(RelativePanel.RightOf)" Value="DebitedTo"/>
+                                    <Setter Target="CreditedTo.(RelativePanel.RightOf)" Value="CreditedToLabel"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <TextBlock x:Name="DateLabel" Text="Date:" Margin="5,0,0,0"/>
+                    <TextBlock x:Name="Date" Margin="5,0,0,0" Text="{Binding date}" FontWeight="Bold"/>
+                    <TextBlock x:Name="ParticularLabel"   Margin="5,0,0,0" Text="Particular:" />
+                    <TextBlock x:Name="Particular"  Text="{Binding particular}"  Margin="5,0,0,0" FontWeight="Bold"/>
+                    <TextBlock x:Name="DebitedToLabel" Text="Debited:"  Margin="5,0,0,0"/>
+                    <TextBlock x:Name="DebitedTo" Text="{Binding debit}"  Margin="5,0,0,0" FontWeight="Bold"/>
+                    <TextBlock x:Name="CreditedToLabel" Text="Credited:"  Margin="5,0,0,0"/>
+                    <TextBlock x:Name="CreditedTo" Text="{Binding credit}"  Margin="5,0,0,0" FontWeight="Bold"/>
+                    <TextBlock x:Name="AmountLabel" Text="Amount:"  Margin="5,0,0,0"/>
+                    <TextBlock x:Name="Amount"  Margin="5,0,0,0" FontWeight="Bold"><Run Text="Rs. "/><Run Text="{Binding amount}"/></TextBlock>
+                </RelativePanel>
+            </UserControl>
+        </DataTemplate>
+    </Page.Resources>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
@@ -20,25 +113,8 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="One.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="One.(RelativePanel.AlignRightWithPanel)" Value="true"/>
-                        <Setter Target="Two.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="Two.(RelativePanel.AlignRightWithPanel)" Value="true"/>
-                        <Setter Target="Two.(RelativePanel.Below)" Value="One"/>
-                        <Setter Target="Three.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="Three.(RelativePanel.AlignRightWithPanel)" Value="true"/>
-                        <Setter Target="Three.(RelativePanel.Below)" Value="Two"/>
-                        <Setter Target="Four.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="Four.(RelativePanel.AlignRightWithPanel)" Value="true"/>
-                        <Setter Target="Four.(RelativePanel.Below)" Value="Three"/>
-                        <Setter Target="FromDate.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="FromDate.(RelativePanel.AlignRightWithPanel)" Value="true"/>
-                        <Setter Target="FromDate.(RelativePanel.Below)" Value="Four"/>
-                        <Setter Target="ToDate.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="ToDate.(RelativePanel.AlignRightWithPanel)" Value="true"/>
                         <Setter Target="ToDate.(RelativePanel.Below)" Value="FromDate"/>
-
-                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
+                        <Setter Target="SubmitButton.(RelativePanel.Below)" Value="ToDate"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -46,19 +122,9 @@
                         <AdaptiveTrigger MinWindowWidth="521" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="One.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="One.Margin" Value="0,0,100,0"/>
-                        <Setter Target="Two.(RelativePanel.Below)" Value="pageHeader"/>
-                        <Setter Target="Two.(RelativePanel.RightOf)" Value="One"/>
-                        <Setter Target="Three.(RelativePanel.Below)" Value="One"/>
-                        <Setter Target="Three.Margin" Value="0,0,100,0"/>
-                        <Setter Target="Four.(RelativePanel.RightOf)" Value="Three"/>
-                        <Setter Target=" Four.(RelativePanel.Below)" Value="Two"/>
-                        <Setter Target="FromDate.Margin" Value="0,0,0,0"/>
-                        <Setter Target=" FromDate.(RelativePanel.Below)" Value="Three"/>
                         <Setter Target="ToDate.(RelativePanel.RightOf)" Value="FromDate"/>
-                        <Setter Target=" ToDate.(RelativePanel.Below)" Value="Four"/>
-                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                        <Setter Target="SubmitButton.(RelativePanel.RightOf)" Value="ToDate"/>
+                        <Setter Target="SubmitButton.Margin" Value="5,33,5,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateWide">
@@ -66,57 +132,35 @@
                         <AdaptiveTrigger MinWindowWidth="1200" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="One.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
-                        <Setter Target="One.Margin" Value="0,0,200,0"/>
-                        <Setter Target="Two.(RelativePanel.Below)" Value="pageHeader"/>
-                        <Setter Target="Two.(RelativePanel.RightOf)" Value="One"/>
-                        <Setter Target="Three.(RelativePanel.Below)" Value="One"/>
-                        <Setter Target="Three.Margin" Value="0,0,200,0"/>
-                        <Setter Target="Four.(RelativePanel.RightOf)" Value="Three"/>
-                        <Setter Target=" Four.(RelativePanel.Below)" Value="Two"/>
-                        <Setter Target="FromDate.Margin" Value="0,0,100,0"/>
-                        <Setter Target=" FromDate.(RelativePanel.Below)" Value="Three"/>
                         <Setter Target="ToDate.(RelativePanel.RightOf)" Value="FromDate"/>
-                        <Setter Target=" ToDate.(RelativePanel.Below)" Value="Four"/>
-                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
+                        <Setter Target="SubmitButton.(RelativePanel.RightOf)" Value="ToDate"/>
+                        <Setter Target="SubmitButton.Margin" Value="5,33,5,0"/>
+
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
-
-        <!--  header  -->
         <controls:PageHeader x:Name="pageHeader"
                              Frame="{x:Bind Frame}"
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Text="Add Task"
+                             Text="List Journals"
                              EllipsisVisibility="Collapsed">
-            <AppBarButton x:Name="SubmitButton" Foreground="White" Click="{x:Bind ViewModel.Submit}" Label="Submit" Icon="Save"/>
-
         </controls:PageHeader>
-        <CommandBar x:Name="Menu" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
-            <AppBarButton Label="Submit" Click="{x:Bind ViewModel.Submit}" Icon="Save"/>
-        </CommandBar>
-        <!-- content -->
-        <Grid x:Name="One" RelativePanel.Below="pageHeader" >
-            <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Task Name" x:Name="TaskName" PlaceholderText="Minimum 5 Characters"/>
-        </Grid>   
-        <Grid x:Name="Two" >
-            <ComboBox HorizontalAlignment="Stretch"  Margin="5,5,4.4,5" Header="Assigned to"  ItemsSource="{Binding Users}" DisplayMemberPath="name" SelectedItem="{Binding selectedleader, Mode=TwoWay}" PlaceholderText="Select Member"/>
-        </Grid>
-        <Grid x:Name="Three" >
-            <TextBox Text="{Binding task.description, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Description" x:Name="TaskDesc" PlaceholderText="What is this task about?"/>
-        </Grid>
-        <Grid x:Name="Four" >
-            <TextBox Text="{Binding task.status, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Status" x:Name="TaskStatus" PlaceholderText="How far the task is done?"/>
-        </Grid>
-        <Grid x:Name="FromDate" >
-            <DatePicker  Margin="5,5,4.4,5" Header="From" Date="{Binding task.startDate, Mode=TwoWay}" x:Name="From"/>
-        </Grid>
-        <Grid x:Name="ToDate">
-            <DatePicker  Margin="5,5,4.4,60" Header="To" Date="{Binding task.endDate, Mode=TwoWay}"  x:Name="To"/>
+
+        <Grid RelativePanel.Below="pageHeader" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,0,60" RelativePanel.AlignBottomWithPanel="True">
+            <StackPanel>
+                <RelativePanel>
+                    <DatePicker x:Name="FromDate" Header="From"  Margin="5" Date="{Binding fromDate,Mode=TwoWay}"/>
+                    <DatePicker x:Name="ToDate" Margin="5" Header="To" Date="{Binding toDate,Mode=TwoWay}"/>
+                    <Button x:Name="SubmitButton" Margin="5,5,5,5" Content="Get Report" Click="{x:Bind ViewModel.Submit}"/>
+                </RelativePanel>
+
+                <ListView ItemTemplate="{StaticResource accounttable}" ItemsSource="{Binding Journals, Mode=TwoWay}" SelectionMode="Single" ItemClick="{x:Bind ViewModel.ClickItemList}">
+
+                </ListView>
+            </StackPanel>
         </Grid>
     </RelativePanel>
 </Page>
