@@ -25,7 +25,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for narrow view  -->
-                        <Setter Target="stateTextBox.Text" Value="Narrow Visual State" />
+                     <!--   <Setter Target="stateTextBox.Text" Value="Narrow Visual State" /> -->
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -34,7 +34,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for normal view  -->
-                        <Setter Target="stateTextBox.Text" Value="Normal Visual State" />
+                        <!-- <Setter Target="stateTextBox.Text" Value="Normal Visual State" /> -->
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateWide">
@@ -43,7 +43,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--  TODO: change properties for wide view  -->
-                        <Setter Target="stateTextBox.Text" Value="Wide Visual State" />
+                       <!-- <Setter Target="stateTextBox.Text" Value="Wide Visual State" /> -->
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -53,7 +53,7 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Content="Fido ERP">
+                             Text="Welcome to Fido ERP">
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
@@ -62,50 +62,26 @@
 
         </controls:PageHeader>
 
-        <RelativePanel EntranceNavigationTransitionInfo.IsTargetElement="True"
-                       RelativePanel.AlignBottomWithPanel="True"
-                       RelativePanel.AlignLeftWithPanel="True"
-                       RelativePanel.AlignRightWithPanel="True"
-                       RelativePanel.Below="pageHeader">
-
-
-            <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0">
-
-                <TextBox MinWidth="150"
-                         MinHeight="62"
-                         Header="Parameter to pass"
-                         Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         TextWrapping="Wrap">
-                    <Interactivity:Interaction.Behaviors>
-
-                        <!--  enable submit on enter key  -->
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
-                        </Behaviors:KeyBehavior>
-
-                        <!--  focus on textbox when page loads  -->
-                        <Core:EventTriggerBehavior>
-                            <Behaviors:FocusAction />
-                        </Core:EventTriggerBehavior>
-
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-
-            </controls:Resizer>
-
-            <Button x:Name="submitButton"
-                    Click="{x:Bind ViewModel.GotoDetailsPage}"
-                    Content="Submit"
-                    RelativePanel.AlignBottomWith="parameterResizer"
-                    RelativePanel.RightOf="parameterResizer" />
-
-            <TextBlock x:Name="stateTextBox"
-                       Margin="16,16,0,0"
-                       RelativePanel.AlignLeftWith="parameterResizer"
-                       RelativePanel.Below="parameterResizer"
-                       Text="Current Visual State" />
-
-        </RelativePanel>
+        <Grid x:Name="MyTasks" Margin="0,10,5,60"  RelativePanel.Below="pageHeader">
+            <RelativePanel Margin="10,0">
+                <TextBlock x:Name="AssignedtoMe" Text="All my tasks " FontSize="22" Margin="0,0,0,5" />
+                <ListView   HorizontalAlignment="Stretch" ItemsSource="{Binding myTasks, Mode=TwoWay}" ItemClick="{x:Bind ViewModel.ClickItemList}" IsItemClickEnabled="True"  SelectionMode="Single" RelativePanel.Below="AssignedtoMe">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,5">
+                                    <SymbolIcon Symbol="Paste" x:Name="s1" Margin="0,0,4,0"/>
+                                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RelativePanel.RightOf="s1">
+                                        <TextBlock Text="{Binding title}" FontSize="17" />
+                                        <TextBlock Text="{Binding status}" />
+                                    </StackPanel>
+                                </RelativePanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RelativePanel>
+        </Grid>
 
     </RelativePanel>
 </Page>

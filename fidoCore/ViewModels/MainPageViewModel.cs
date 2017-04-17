@@ -6,11 +6,27 @@ using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
 using fidoCore.Services.SettingsServices;
+using fidoBackend.Models;
+using Windows.UI.Xaml.Controls;
+using fidoBackend.Services;
 
 namespace fidoCore.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        public List<Tasks> myTasks { get; set; }
+
+        public Tasks selectedTask { get; set; }
+
+        public void ClickItemList(object sender, ItemClickEventArgs e)
+        {
+            if (e.ClickedItem != null)
+            {
+                var obj = new Temp1();
+                obj.task = ((Tasks)e.ClickedItem);
+                NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask), obj);
+            }
+        }
         public MainPageViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -30,6 +46,19 @@ namespace fidoCore.ViewModels
                 Value = suspensionState[nameof(Value)]?.ToString();
             }
             await Task.CompletedTask;
+
+            var sett = Services.SettingsServices.SettingsService.Instance.UserId;
+            Views.Busy.SetBusy(true, "Loading Assigned Tasks for the Project");
+            var assigned = await ProjectServices.ListTasks(sett);
+            Views.Busy.SetBusy(false);
+            if (assigned.result)
+            {
+                if (assigned.data != null)
+                {
+                    myTasks = assigned.data as List<Tasks>;
+                    RaisePropertyChanged("myTasks");
+                }
+            }
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)

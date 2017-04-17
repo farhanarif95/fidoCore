@@ -59,9 +59,9 @@ namespace fidoBackend.Services
             }
         }
 
-        public static async Task<Status> ListTasks(string userId, string projectId)
+        public static async Task<Status> ListTasks(string userId)
         {
-            var s = "listTasks/?userId=" + userId + "&" + "projectId=" + projectId;
+            var s = "listTasks/?userId=" + userId;
             var res = await BaseService.HttpGetOperation(s);
             if (res != null)
             {
