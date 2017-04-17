@@ -18,7 +18,7 @@ namespace fidoCore.ViewModels
         public List<Tasks> tasks { get; set; }
         public List<Users> teammembers { get; set; }
         public List<Tasks> myTasks { get; set; }
-        
+
         public Tasks selectedTask { get; set; }
 
         public void ClickItemList(object sender, ItemClickEventArgs e)
@@ -27,10 +27,18 @@ namespace fidoCore.ViewModels
             {
                 var obj = new Temp1();
                 obj.task = ((Tasks)e.ClickedItem);
-                NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask),obj);
+                NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask), obj);
             }
         }
-
+        public void ClickMyTask(object sender, ItemClickEventArgs e)
+        {
+            if (e.ClickedItem != null)
+            {
+                var obj = new Temp1();
+                obj.task = ((Tasks)e.ClickedItem);
+                NavigationService.Navigate(typeof(Views.ProjectManagement.AddTask), obj);
+            }
+        }
         public void EditTasks()
         {
 
@@ -39,7 +47,7 @@ namespace fidoCore.ViewModels
         public void AddTeam()
         {
         }
-       
+
         public ProjectHomeViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -57,10 +65,10 @@ namespace fidoCore.ViewModels
         {
             if (suspensionState.Any())
             {
-               
+
             }
-           
-            if(parameter!=null)
+
+            if (parameter != null)
             {
                 projectId = parameter.ToString();
             }
@@ -87,11 +95,11 @@ namespace fidoCore.ViewModels
                 {
                     teammembers = status.data as List<Users>;
                     RaisePropertyChanged("teammembers");
-                   
-        
+
+
                 }
             }
-            
+
             Views.Busy.SetBusy(true, "Loading All Tasks for the Project");
             var loadedtasks = await ProjectServices.ListTasksinProject(projectId);
             Views.Busy.SetBusy(false);
@@ -147,7 +155,7 @@ namespace fidoCore.ViewModels
         {
             var temp = new Temp1();
             temp.projectId = projectId;
-            NavigationService.Navigate(typeof(Views.ProjectManagement.AddProjects),temp);
+            NavigationService.Navigate(typeof(Views.ProjectManagement.AddProjects), temp);
         }
 
 
