@@ -54,6 +54,14 @@ namespace fidoCore.Services.SettingsServices
                 _helper.Write(nameof(OrganisationId), value);
             }
         }
+        public string OrganisationAddress
+        {
+            get { return _helper.Read<string>(nameof(OrganisationAddress), String.Empty); }
+            set
+            {
+                _helper.Write(nameof(OrganisationAddress), value);
+            }
+        }
 
         public bool UseShellBackButton
         {
