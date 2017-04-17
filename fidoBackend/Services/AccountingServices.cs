@@ -31,7 +31,16 @@ namespace fidoBackend.Services
         {
             try
             {
-                await MobileService.GetTable<Accounts>().InsertAsync(account);
+                if(account.id==null)
+                { 
+                    await MobileService.GetTable<Accounts>().InsertAsync(account);
+                }
+                else
+                {
+                    await MobileService.GetTable<Accounts>().UpdateAsync(account);
+                }
+            }
+
                 return new Models.Status() { result = true, message = "Successfully Added" };
             }
             catch (Exception e)
