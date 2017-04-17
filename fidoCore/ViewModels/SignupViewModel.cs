@@ -135,6 +135,7 @@ namespace fidoCore.ViewModels
                         settings.Name = user.name;
                         settings.OrganisationId = organisation.id;
                         settings.OrganisationName = organisation.companyName;
+                        settings.OrganisationAddress = organisation.address;
                         settings.UserId = user.id;
                         NavigationService.Navigate(typeof(Views.MainPage));
                     }

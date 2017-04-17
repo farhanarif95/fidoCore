@@ -15,7 +15,8 @@ namespace fidoCore.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         public List<Tasks> myTasks { get; set; }
-
+        public string organisationname { get; set; }
+        public string address { get; set; }
         public Tasks selectedTask { get; set; }
 
         public void ClickItemList(object sender, ItemClickEventArgs e)
@@ -48,7 +49,11 @@ namespace fidoCore.ViewModels
             await Task.CompletedTask;
 
             var sett = Services.SettingsServices.SettingsService.Instance.UserId;
-            Views.Busy.SetBusy(true, "Loading Assigned Tasks for the Project");
+            organisationname = Services.SettingsServices.SettingsService.Instance.OrganisationName;
+            address = Services.SettingsServices.SettingsService.Instance.OrganisationAddress;
+            RaisePropertyChanged("organisationname");
+            RaisePropertyChanged("address");
+            Views.Busy.SetBusy(true, "Loading all Assigned Tasks for You");
             var assigned = await ProjectServices.ListTasks(sett);
             Views.Busy.SetBusy(false);
             if (assigned.result)
