@@ -67,15 +67,15 @@ namespace fidoCore.ViewModels
         }
         public void GoToIncomeAndExpenditure()
         {
-
+            NavigationService.NavigateAsync(typeof(Views.Accounting.IncomeandExpenditure));
         }
         public void GoToReceiptsAndPayments()
         {
-
+            NavigationService.NavigateAsync(typeof(Views.Accounting.ReceiptandPayment));
         }
         public void GoToBalanceSheet()
         {
-
+            NavigationService.NavigateAsync(typeof(Views.Accounting.BalanceSheet));
         }
         public void GoToLedgers()
         {

@@ -129,6 +129,12 @@
     <Compile Include="Views\Accounting\AddJournal.xaml.cs">
       <DependentUpon>AddJournal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Accounting\ReceiptandPayment.xaml.cs">
+      <DependentUpon>ReceiptandPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounting\IncomeandExpenditure.xaml.cs">
+      <DependentUpon>IncomeandExpenditure.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Accounting\BalanceSheet.xaml.cs">
       <DependentUpon>BalanceSheet.xaml</DependentUpon>
     </Compile>
@@ -226,6 +232,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Accounting\AddJournal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Accounting\ReceiptandPayment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Accounting\IncomeandExpenditure.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
