@@ -92,6 +92,12 @@ namespace fidoCore.ViewModels
                     settings.Email = user.email;
                     settings.Name = user.name;
                     settings.OrganisationId = user.organisation;
+                    var xx = await fidoBackend.Services.UserServices.MobileService.GetTable<Organisation>().Where(x => x.id == settings.OrganisationId).ToListAsync();
+                    if (xx.FirstOrDefault() != null)
+                    {
+                        settings.OrganisationName = xx.FirstOrDefault().companyName;
+                        settings.OrganisationAddress = xx.FirstOrDefault().address;
+                    }
                     settings.UserId = user.id;
                     NavigationService.Navigate(typeof(Views.MainPage));
                 }

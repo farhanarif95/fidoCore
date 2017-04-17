@@ -40,7 +40,10 @@ namespace fidoBackend.Services
                     await MobileService.GetTable<Accounts>().UpdateAsync(account);
                 }
                 return new Models.Status() { result = true, message = "Successfully Added" };
+            
             }
+
+                
             catch (Exception e)
             {
                 return new Models.Status() { result = false, message = e.ToString() };

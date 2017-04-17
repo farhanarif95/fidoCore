@@ -111,6 +111,7 @@
     <Compile Include="ViewModels\Accounting\ListLedgersViewModel.cs" />
     <Compile Include="ViewModels\Accounting\AddLedgersViewModel.cs" />
     <Compile Include="ViewModels\addUsersViewModel.cs" />
+    <Compile Include="ViewModels\UserProfileViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
     <Compile Include="ViewModels\ProjectManagement\AddTaskViewModel.cs" />
@@ -178,6 +179,9 @@
     </Compile>
     <Compile Include="Views\SignupPage.xaml.cs">
       <DependentUpon>SignupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserProfile.xaml.cs">
+      <DependentUpon>UserProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -289,6 +293,10 @@
     <Page Include="Views\SignupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WelcomePage.xaml">
       <SubType>Designer</SubType>

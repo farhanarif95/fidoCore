@@ -83,7 +83,7 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Text="Add Task"
+                             Text="Add Entry"
                              EllipsisVisibility="Collapsed">
             <AppBarButton x:Name="SubmitButton" Foreground="White" Click="{x:Bind ViewModel.Submit}" Label="Submit" Icon="Save"/>
 
