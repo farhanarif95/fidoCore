@@ -18,6 +18,11 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>fidoCore_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>\\Mac\Home\Desktop\</AppxPackageDir>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>C2219173E7FC272C629676E6187ACCDEEB8060B2</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -100,12 +105,38 @@
     <Compile Include="Helpers\Encyrption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
+    <Compile Include="ViewModels\Accounting\AccountHomeViewModel.cs" />
+    <Compile Include="ViewModels\Accounting\ListJournalsViewModel.cs" />
+    <Compile Include="ViewModels\Accounting\JournalEntryViewModel.cs" />
+    <Compile Include="ViewModels\Accounting\ListLedgersViewModel.cs" />
+    <Compile Include="ViewModels\Accounting\AddLedgersViewModel.cs" />
+    <Compile Include="ViewModels\addUsersViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\AddTaskViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\AddProjectsViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\AddUsersViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\ListProjectsViewModel.cs" />
+    <Compile Include="ViewModels\ProjectManagement\ProjectHomeViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\ListUsersViewModel.cs" />
     <Compile Include="ViewModels\SignupViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="Views\Accounting\AccountingHome.xaml.cs">
+      <DependentUpon>AccountingHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounting\AddJournal.xaml.cs">
+      <DependentUpon>AddJournal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounting\ListLedgers.xaml.cs">
+      <DependentUpon>ListLedgers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounting\ListJournal.xaml.cs">
+      <DependentUpon>ListJournal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Accounting\AddLedgers.xaml.cs">
+      <DependentUpon>AddLedgers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\addUsers.xaml.cs">
       <DependentUpon>addUsers.xaml</DependentUpon>
     </Compile>
@@ -120,6 +151,21 @@
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectManagement\AddTask.xaml.cs">
+      <DependentUpon>AddTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectManagement\AddTeam.xaml.cs">
+      <DependentUpon>AddTeam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectManagement\AddProjects.xaml.cs">
+      <DependentUpon>AddProjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectManagement\ListProjects.xaml.cs">
+      <DependentUpon>ListProjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectManagement\ProjectHome.xaml.cs">
+      <DependentUpon>ProjectHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -168,6 +214,26 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\Accounting\AccountingHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Accounting\AddJournal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Accounting\ListLedgers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Accounting\ListJournal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Accounting\AddLedgers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\addUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +251,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ProjectManagement\AddTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectManagement\AddTeam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectManagement\AddProjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectManagement\ListProjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectManagement\ProjectHome.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -213,21 +299,15 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ProjectReference Include="..\fidoAccounting\fidoAccounting.csproj">
-      <Project>{883b6d29-0317-449b-804a-5bcc6577e480}</Project>
-      <Name>fidoAccounting</Name>
-    </ProjectReference>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.17.0">
+      <Name>SQLite for Universal Windows Platform</Name>
+    </SDKReference>
   </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\fidoBackend\fidoBackend.csproj">
       <Project>{bc781ee2-9a82-4ea6-9868-3065623e294a}</Project>
       <Name>fidoBackend</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.17.0">
-      <Name>SQLite for Universal Windows Platform</Name>
-    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
@@ -243,4 +323,5 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
+  -->
 </Project>

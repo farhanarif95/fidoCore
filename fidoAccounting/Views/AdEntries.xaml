@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="fidoAccounting.Views.AdEntries"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:fidoAccounting.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:controls="using:Template10.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <DatePicker  Margin="5,5,4.4,5" Header="Date" Date="{Binding task.startDate, Mode=TwoWay}" x:Name="From"/>
+        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Particular" x:Name="Particular" PlaceholderText="Minimum 5 Characters       "/>
+        <ComboBox HorizontalAlignment="Stretch"  Margin="5,5,4.4,5" Header="Type"  ItemsSource="{Binding Users}" DisplayMemberPath="name" SelectedItem="{Binding selectedleader, Mode=TwoWay}" PlaceholderText="Select type      "/>
+        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Quantity" x:Name="Quantity" PlaceholderText="Quantity      "/>
+        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Price per unit" x:Name="price" PlaceholderText="Price per unit       "/>
+        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Total" x:Name="TotalPrice" PlaceholderText="Total Price       "/>
+        <ListView HorizontalAlignment="Stretch" ItemsSource="{Binding Users, Mode=TwoWay}"
+                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="AssignedtoMe">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <RelativePanel>
+                        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" x:Name="date"/>
+                        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch"  x:Name="part" RelativePanel.RightOf="date"/>
+                        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch"  x:Name="qty" RelativePanel.RightOf="part"/>
+                        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch"  x:Name="ppu" RelativePanel.RightOf="qty"/>
+                        <TextBox Text="{Binding task.title, Mode=TwoWay}" Margin="5,5,4.4,5" VerticalAlignment="Stretch" Header="Price per unit" RelativePanel.RightOf="ppu" x:Name="total" />
+
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <SymbolIcon  Symbol="Add" x:Name="AddButton"/>
+    </StackPanel>
+</Page>

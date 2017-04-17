@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="fidoCore.Views.Accounting.ListLedgers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:fidoCore.Views.Accounting"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:vm="using:fidoCore.ViewModels"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:ListLedgersViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SubmitButton.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <controls:PageHeader Text="Ledgers" EllipsisVisibility="Collapsed">
+            <AppBarButton x:Name="AddProjects" Foreground="White" Label="Submit" Click="{x:Bind ViewModel.AddLedger}" Icon="Add"/>
+        </controls:PageHeader>
+        <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
+            <AppBarButton Label="Add Projects" Click="{x:Bind ViewModel.AddLedger}" Icon="Add"/>
+        </CommandBar>
+
+        <ListView Margin="0,60,0,60" ItemClick="{x:Bind ViewModel.ClickItemList}"  SelectionMode="Single" IsItemClickEnabled="True" SelectedItem="{Binding selecteditem, Mode=TwoWay}" ItemsSource="{Binding ledgers, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <RelativePanel Margin="0,10">
+                        <SymbolIcon x:Name="ssss" Symbol="Bullets" Margin="5"  />
+                        <TextBlock x:Name="NameLabel" Margin="5" RelativePanel.RightOf="ssss" FontSize="17">
+                            <Run Text="{Binding title}"/>
+                        </TextBlock>
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>

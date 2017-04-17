@@ -19,7 +19,7 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-
+                        <Setter Target="Submit.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateNormal">
@@ -27,7 +27,7 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-
+                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateWide">
@@ -35,13 +35,13 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-
+                        <Setter Target="Menu.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <controls:PageHeader Text="Signup" EllipsisVisibility="Collapsed">
-            <AppBarButton Label="Add Users" Foreground="White" Click="{x:Bind ViewModel.AddUsers}" Icon="Add"/>
+        <controls:PageHeader Text="Users in Organisation" EllipsisVisibility="Collapsed">
+            <AppBarButton x:Name="Submit" Label="Add Users" Foreground="White" Click="{x:Bind ViewModel.AddUsers}" Icon="Add"/>
         </controls:PageHeader>
         <CommandBar x:Name="Menu" VerticalAlignment="Bottom">
             <AppBarButton Label="Add Users" Click="{x:Bind ViewModel.AddUsers}" Icon="Add"/>
@@ -51,7 +51,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <RelativePanel>
-                        <TextBlock x:Name="NameLabel" Margin="5">
+                        <SymbolIcon Symbol="Contact" x:Name="syy" />
+                        <TextBlock x:Name="NameLabel" Margin="5" RelativePanel.RightOf="syy">
                             <Run Text="{Binding name}"/>
                             <Run Text=","/>
                         </TextBlock>
